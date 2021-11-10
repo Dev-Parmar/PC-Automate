@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="images/logo1.png" alt="logo" width="50" height="50" class="d-inline-block align-text-top">
+                <img src="images/logo1.png" alt="logo" width="75" height="75" class="d-inline-block align-text-top">
             </a>
             <button class="btn btn-success col-2 m-2 ms-auto" type="button">Login</button>
             <button class="btn btn-warning col-2 m-2" type="button">Register</button>
