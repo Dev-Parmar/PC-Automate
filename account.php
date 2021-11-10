@@ -1,4 +1,42 @@
 <?php
+
+session_start();
+
+require_once 'Model/database.php';
+require_once 'Model/users.php';
+
+
+
+if (isset($_SESSION['id'])){
+    if ($_SESSION['role'] == "admin"){
+        $_SESSION['admin'] = "visible";
+    }else{
+        $_SESSION['admin'] = "hidden";
+    }
+
+    if ($_SESSION['role'] == "builder"){
+        $_SESSION['builder'] = "visible";
+    } else{
+        $_SESSION['builder'] = "hidden";
+    }
+
+    if ($_SESSION['role'] == "user"){
+        $_SESSION['user'] = "visible";
+    }  else{
+        $_SESSION['user'] = "hidden";
+    }
+
+}
+
+$database = new Database();
+
+$uid = $_SESSION['uid'];
+$foundUser = $database->profileUid("$uid");
+
+$foundUser->getName()
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +62,8 @@
             <a class="navbar-brand" href="#">
                 <img src="images/logo1.png" alt="logo" width="75" height="75" class="d-inline-block align-text-top">
             </a>
-            <button class="btn btn-success col-2 m-2 ms-auto" type="button">Login</button>
-            <button class="btn btn-warning col-2 m-2" type="button">Register</button>
+            <button class="btn btn-success col-2 m-2 ms-auto" type="button" style="visibility: <?php echo $_SESSION['login']?>;">Login</button>
+            <button class="btn btn-warning col-2 m-2" type="button" style="visibility: <?php echo $_SESSION['login'] ?>;">Register</button>
         </div>
     </nav>
 </header>
@@ -50,10 +88,27 @@
                     <a class="nav-link active" aria-current="page" href="#">My Account</a>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
+<div class="container-inline">
+    <div class="container" style="visibility: <?php echo $_SESSION['admin']?>;">
+    <h1 class="m-5">Welcome</h1>
+        <p class="mx-5 mb-5">
+            So, what you wanna do today?!
+        </p>
+    <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Add a Product</button>
+    <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Edit a product</button>
+    <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Create a template</button>
+    </div>
+    <div class="container" style="visibility: <?php echo $_SESSION['builder']?>;">
+        <h1 class="m-5">Welcome</h1>
+        <p class="mx-5 mb-5">
+            So, what you wanna do today?!
+        </p>
+        <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Create a template</button>
+    </div>
+</div>
 </body>
 </html>
 

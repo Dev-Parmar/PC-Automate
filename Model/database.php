@@ -60,6 +60,24 @@ class database
     }
 
 
+    public function findID(int $id)                 //to return users info using the id
+    {
+        try {
+            $query = "select * from pcautomate.users where id = '{$id}'";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            foreach ($statement->fetchAll() as $row) {
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
+                return $users;
+            }
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
 
 
 
