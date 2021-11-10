@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +23,17 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="images/logo1.png" alt="logo" width="75" height="75" class="d-inline-block align-text-top">
             </a>
-            <button class="btn btn-success col-2 m-2 ms-auto" type="button">Login</button>
-            <button class="btn btn-warning col-2 m-2" type="button">Register</button>
+            <?php
+            if (isset($_SESSION['id'])){
+                echo '<button class="btn btn-danger col-2 m-2" type="button" onclick="logout()">Logout</button>';
+            }else{
+                echo '<button class="btn btn-success col-2 m-2 ms-auto" type="button"  onclick="login()">Login</button>';
+                echo '<button class="btn btn-warning col-2 m-2" type="button" onclick="register()">Register</button>';
+            }
+            ?>
         </div>
     </nav>
 </header>
@@ -54,6 +62,20 @@
         </div>
     </div>
 </nav>
+
+<script>
+    function logout(){
+        location.href = 'Controller/logout.php';
+    }
+
+    function  login(){
+        location.href = 'login.php';
+    }
+
+    function register(){
+        location.href = 'register.php';
+    }
+</script>
 </body>
 </html>
 

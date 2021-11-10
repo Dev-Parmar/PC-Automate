@@ -1,7 +1,14 @@
 <?php
 
-if (isset($_SESSION['uid'])) {
+session_start();
+
+if (isset($_SESSION['id'])) {
     header("Location: index.php");
+}
+
+if (isset($_SESSION['alert'])){
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
 }
 
 ?>
@@ -25,7 +32,7 @@ if (isset($_SESSION['uid'])) {
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="images/logo1.png" alt="logo" width="75" height="75" class="d-inline-block align-text-top">
             </a>
             <button class="btn btn-warning col-2 m-2" type="button" onclick="location.href = 'login.php'">Login</button>
@@ -34,7 +41,7 @@ if (isset($_SESSION['uid'])) {
 </header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="another">
     <div class="container-fluid">
-        <a class="navbar-brand m-auto" href="#">PC Automate</a>
+        <a class="navbar-brand m-auto" href="index.php">PC Automate</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,7 +51,7 @@ if (isset($_SESSION['uid'])) {
 
     <h1 class="login-text my-5 mx-2">Create Account</h1>
 
-    <form action="../Controller/reg-valid.php" method="POST">
+    <form action="Controller/reg-valid.php" method="POST" id="registerForm" onsubmit="validate()">
         <div class="form-group row m-2">
             <label for="name" class="col-sm-4 col-form-label">Name</label>
             <div class="col-sm-8">
@@ -69,6 +76,31 @@ if (isset($_SESSION['uid'])) {
     </form>
     <p class="login-register-text m-2">Already have an account? <a href="login.php"><u>Login Here</u></a></p>
 </div>
+
+<script>
+    function validate(){
+        let x = document.forms['registerForm']['email'].value;
+        let y = document.forms['registerForm']['password'].value;
+        let z = document.forms['registerForm']['name'].value;
+
+        if ((x == null || x == "") || (y == null || y == "") || (z == null || z == "")){
+            alert("Please enter all the details");
+            return false;
+        }
+    }
+
+        function logout(){
+        location.href = 'Controller/logout.php';
+    }
+
+        function  login(){
+        location.href = 'login.php';
+    }
+
+        function register(){
+        location.href = 'register.php';
+    }
+</script>
 
 
 </body>

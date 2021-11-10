@@ -28,7 +28,7 @@ class database
     public function insertUser(users $users)     //Add new User
     {
         try {
-            $query = "INSERT INTO pcautomate.users (`id`, `name`, `email`, `password`) VALUES (NULL, '{$users->getName()}', '{$users->getEmail()}', '{$users->getPassword()}');";
+            $query = "INSERT INTO pcautomate.users (`id`, `name`, `email`, `password`, `role`) VALUES (NULL, '{$users->getName()}', '{$users->getEmail()}', '{$users->getPassword()}', '{$users->getRole()}');";
             $statement = $this->connection->prepare($query);
             $statement->execute();
         } catch (PDOException $exception) {
@@ -78,6 +78,70 @@ class database
         }
     }
 
+    public function login(string $email, string $password)                     //to check the username and password is right
+    {
+        try {
+            $sql = "SELECT * FROM pcautomate.users WHERE email='$email' AND password='$password'";
+            $result = $this->connection->prepare($sql);
+            $result->execute();
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            foreach ($result->fetchAll() as $row) {
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
+                return $users;
+            }
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
+    public function checkName(string $name)        //take in username and return the details of the users
+    {
+        try {
+            $query = "SELECT * FROM pcautomate.users WHERE name='{$name}'";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            $user = array();
+
+            foreach ($result->fetchAll() as $row) {
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
+                array_push($user, $users);
+            }
+
+            return $user;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
+    public function checkEmail(string $email)        //take in username and return the details of the users
+    {
+        try {
+            $query = "SELECT * FROM pcautomate.users WHERE email='{$email}'";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            $user = array();
+
+            foreach ($result->fetchAll() as $row) {
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
+                array_push($user, $users);
+            }
+
+            return $user;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
 
 
 

@@ -1,8 +1,16 @@
 <?php
 
-if (isset($_SESSION['uid'])) {
+session_start();
+
+if (isset($_SESSION['id'])) {
     header("Location: index.php");
 }
+
+if (isset($_SESSION['alert'])){
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +33,7 @@ if (isset($_SESSION['uid'])) {
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="images/logo1.png" alt="logo" width="75" height="75" class="d-inline-block align-text-top">
             </a>
             <button class="btn btn-warning col-2 m-2" type="button" onclick="location.href = 'register.php'">Register</button>
@@ -42,11 +50,11 @@ if (isset($_SESSION['uid'])) {
 </nav>
 <div class="container ">
         <h1 class="login-text my-5">LOGIN</h1>
-        <form action="../Controller/log-valid.php" method="POST">
+        <form id='loginForm' action="Controller/log-valid.php" method="POST" onsubmit="validate()">
             <div class="form-group row">
-                <label for="username" class="col-sm-4 col-form-label">Username</label>
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="username" id="username" placeholder="<?php if (isset($_SESSION['username'])){ echo $_SESSION['username'];} ?>">
+                    <input type="email" class="form-control" name="email" id="email" >
                 </div>
             </div><br />
             <div class="form-group row">
@@ -62,6 +70,30 @@ if (isset($_SESSION['uid'])) {
         </form>
     </div>
 
+<script>
+    function validate(){
+        let x = document.forms['loginForm']['email'].value;
+        let y = document.forms['loginForm']['password'].value;
+
+        if ((x == null || x == "") || (y == null || y == "")){
+            alert("Please enter email or password");
+            return false;
+        }
+    }
+
+
+        function logout(){
+        location.href = 'Controller/logout.php';
+    }
+
+        function  login(){
+        location.href = 'login.php';
+    }
+
+        function register(){
+        location.href = 'register.php';
+    }
+</script>
 
 </body>
 </html>

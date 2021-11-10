@@ -6,35 +6,18 @@ require_once 'Model/database.php';
 require_once 'Model/users.php';
 
 
-
-if (isset($_SESSION['id'])){
-    if ($_SESSION['role'] == "admin"){
-        $_SESSION['admin'] = "visible";
-    }else{
-        $_SESSION['admin'] = "hidden";
-    }
-
-    if ($_SESSION['role'] == "builder"){
-        $_SESSION['builder'] = "visible";
-    } else{
-        $_SESSION['builder'] = "hidden";
-    }
-
-    if ($_SESSION['role'] == "user"){
-        $_SESSION['user'] = "visible";
-    }  else{
-        $_SESSION['user'] = "hidden";
-    }
-
-}
-
 $database = new Database();
 
-$uid = $_SESSION['uid'];
-$foundUser = $database->profileUid("$uid");
+$role = 'user';
+if (isset($_SESSION['id'])){
+$id = $_SESSION['id'];
+$foundUser = $database->findID("$id");
 
-$foundUser->getName()
+$name = $foundUser->getName();
+$password = $foundUser->getPassword();
+$role = $foundUser->getRole();
 
+}
 
 
 ?>
@@ -49,7 +32,7 @@ $foundUser->getName()
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <title>Welcome</title>
+    <title>My Account</title>
 
     <link rel="stylesheet" href="css/main.css">
 
@@ -59,11 +42,14 @@ $foundUser->getName()
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="images/logo1.png" alt="logo" width="75" height="75" class="d-inline-block align-text-top">
             </a>
-            <button class="btn btn-success col-2 m-2 ms-auto" type="button" style="visibility: <?php echo $_SESSION['login']?>;">Login</button>
-            <button class="btn btn-warning col-2 m-2" type="button" style="visibility: <?php echo $_SESSION['login'] ?>;">Register</button>
+            <?php
+            if (isset($_SESSION['id'])){
+                echo '<button class="btn btn-danger col-2 m-2" type="button" onclick="logout()">Logout</button>';
+            }
+            ?>
         </div>
     </nav>
 </header>
@@ -92,23 +78,67 @@ $foundUser->getName()
     </div>
 </nav>
 <div class="container-inline">
-    <div class="container" style="visibility: <?php echo $_SESSION['admin']?>;">
-    <h1 class="m-5">Welcome</h1>
-        <p class="mx-5 mb-5">
-            So, what you wanna do today?!
-        </p>
-    <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Add a Product</button>
-    <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Edit a product</button>
-    <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Create a template</button>
-    </div>
-    <div class="container" style="visibility: <?php echo $_SESSION['builder']?>;">
-        <h1 class="m-5">Welcome</h1>
-        <p class="mx-5 mb-5">
-            So, what you wanna do today?!
-        </p>
-        <button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Create a template</button>
-    </div>
+<?php
+
+    switch ($role){
+        case 'admin' :
+            echo '<div class="container">';
+            echo '<h1 class="m-5">Welcome, admin</h1>';
+            echo '<p class="mx-5 mb-5">So, what you wanna do today?!</p>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Add a Product</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Edit a product</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="makepc()">Create a template</button>';
+            echo '</div>';
+
+            break;
+
+        case 'builder' :
+            echo '<div class="container">';
+            echo '<h1 class="m-5">Welcome,'.$name.'</h1>';
+            echo '<p class="mx-5 mb-5">So, what you wanna do today?!</p>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="makepc()">Create a template</button>';
+            echo '</div>';
+
+            break;
+
+        case 'user' :
+            echo '<div class="container">';
+            echo '<h1 class="m-5">You are not Logged In</h1>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-4" onclick="login()">Login</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-4" onclick="register()">Register</button>';
+            echo '</div>';
+
+            break;
+
+        default :
+            echo '<div class="container">';
+            echo '<h1 class="m-5">You are not Logged In now</h1>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-4" onclick="login()">Login</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-4" onclick="register()">Register</button>';
+            echo '</div>';
+
+            break;
+
+}?>
 </div>
+
+<script>
+    function login(){
+        location.href = 'login.php'
+    }
+
+    function register (){
+        location.href = 'register.php'
+    }
+
+    function logout(){
+        location.href = 'Controller/logout.php'
+    }
+
+    function makepc(){
+        location.href = 'create.php'
+    }
+</script>
 </body>
 </html>
 
