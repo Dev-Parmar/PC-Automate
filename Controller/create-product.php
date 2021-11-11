@@ -8,7 +8,7 @@ require_once '../Model/users.php';
 $id = htmlspecialchars($_SESSION['id']);
 $name = htmlspecialchars($_POST['name']);
 $price = htmlspecialchars($_POST['price']);
-
+$category = htmlspecialchars($_POST['category']);
 if (isset($_POST['submit'])) {
 
     if ($_FILES['image']['error'] != 4) {
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             move_uploaded_file($stringImg, './../images/products/' . $updateID . 'product.png');
             $database = new database();
 
-            $newProducts = new products (null, "$name", "$imageName", "$description", "$price");
+            $newProducts = new products (null, "$name", "$imageName", "$description","$category", "$price");
 
             $database->insertProducts($newProducts);               //to add a new product
 

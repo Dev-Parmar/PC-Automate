@@ -158,12 +158,10 @@ session_start();
     <div class="container-inline m-auto" style="background-color: #fcf6c5;">
         <h1 id="per">Peripherals</h1>
         <div class="row p-5" style="max-width: 100%;">
-            <button type="button" class="btn btn-outline-secondary col-md-6 m-auto p-3 my-2">Headphones</button>
-            <button type="button" class="btn btn-outline-secondary col-md-6 m-auto p-3 my-2">Keyboards</button>
-            <button type="button" class="btn btn-outline-secondary col-md-6 m-auto p-3 my-2">Mouse</button>
-            <button type="button" class="btn btn-outline-secondary col-md-6 m-auto p-3 my-2">Speakers</button>
-            <button type="button" class="btn btn-outline-secondary col-md-6 m-auto p-3 my-2">Hard Drives</button>
-            <button type="button" class="btn btn-outline-secondary col-md-6 m-auto p-3 my-2">Webcams</button>
+            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Headphones</button>
+            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Keyboards</button>
+            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Mouse</button>
+            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Speakers</button>
         </div>
     </div>
 </div>

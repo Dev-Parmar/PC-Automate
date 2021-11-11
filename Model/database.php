@@ -39,7 +39,7 @@ class database
     public function insertProducts(products $products)     //insert new in products
     {
         try {
-            $query = "INSERT INTO pcautomate.products (`id`, `name`, `image`, `description`, `price`) VALUES (NULL, '{$products->getName()}', '{$products->getImage()}', '{$products->getDescription()}', '{$products->getPrice()}');";
+            $query = "INSERT INTO pcautomate.products (`id`, `name`, `image`, `description`,`category`, `price`) VALUES (NULL, '{$products->getName()}', '{$products->getImage()}', '{$products->getDescription()}','{$products->getCategory()}', '{$products->getPrice()}');";
             $statement = $this->connection->prepare($query);
             $statement->execute();
         } catch (PDOException $exception) {
@@ -47,10 +47,10 @@ class database
         }
     }
 
-    public function updateProducts($id, $name, $description, $price)         //to update products
+    public function updateProducts($id, $name, $description, $category ,$price)         //to update products
     {
         try {
-            $query = "UPDATE pcautomate.products SET name = '{$name}', description='{$description}', price = '{$price}' WHERE id='{$id}'";
+            $query = "UPDATE pcautomate.products SET name = '{$name}', description='{$description}', category='{$category}', price = '{$price}' WHERE id='{$id}'";
             $result = $this->connection->prepare($query);
             $result->execute();
         } catch (PDOException $exception) {
@@ -165,7 +165,7 @@ class database
             $statement->setFetchMode(PDO::FETCH_ASSOC);
 
             foreach ($statement->fetchAll() as $row) {
-                $products = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['price']);
+                $products = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['category'],$row['price']);
                 return $products;
             }
 

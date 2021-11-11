@@ -71,7 +71,7 @@ if (isset($_SESSION['alert'])) {
 
 <div class="container">
 
-    <h1 class="login-text my-5 mx-2">Add a New Product</h1>
+    <h1 class="login-text m-3">Add a New Product</h1>
 
     <form action="Controller/create-product.php" enctype="multipart/form-data" id="addProduct" method="POST"
           onsubmit="return validate()">
@@ -97,6 +97,17 @@ if (isset($_SESSION['alert'])) {
             <label for="price" class="col-sm-4 col-form-label">Price</label>
             <div class="col-sm-8">
                 <input type="number" class="form-control" name="price" id="price">
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label for="category" class="col-sm-4 col-form-label">Category</label>
+            <div class="col-sm-8">
+            <select class="form-control" aria-label="category" name="category" id="category">
+                <option value="headphone" selected>Headphones</option>
+                <option value="keyboard">Keyboards</option>
+                <option value="mouse">Mouse</option>
+                <option value="speaker">Speakers</option>
+            </select>
             </div>
         </div>
         <div class="form-group row m-2">

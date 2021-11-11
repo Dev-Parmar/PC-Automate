@@ -10,11 +10,12 @@ if (isset($_POST['submit'])) {
     $name = trim($_POST['name']);
     $description = trim($_POST['description']);
     $price = trim($_POST['price']);
+    $category = trim($_POST['category']);
     $pid = $_SESSION['pid'];
 
     $database = new database();
 
-    $updateProduct = $database->updateProducts("$pid", "$name", "$description", "$price");
+    $updateProduct = $database->updateProducts("$pid", "$name", "$description","$category" ,"$price");
 
     $_SESSION['alert'] = "<script>alert('Product Updated Successfully!')</script>";
     header("Location: ../account.php");
