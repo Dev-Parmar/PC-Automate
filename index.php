@@ -78,7 +78,7 @@ session_start();
                     <h1><u>Make your PC</u></h1>
                     <p>Building your own PC is a rewarding experience.<br><br> With our new approach, we'll help you to be sure that the compatibility of your selected PC parts is just right.</p>
                     <br>
-                    <button type="button" class="btn btn-danger">Create PC</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='create.php'">Create PC</button>
                 </div>
             </div>
             <div class="carousel-item">
@@ -86,7 +86,7 @@ session_start();
                 <div id="textCarousel2">
                     <h1><u>Take a look at custom PCs</u></h1>
                     <p>Our partners have already build custom PCs for you to choose from and have a better idea about the latest technology and compatibility.</p>
-                    <button type="button" class="btn btn-danger">Explore</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='templates.php'">Explore</button>
                 </div>
             </div>
             <div class="carousel-item">
@@ -94,7 +94,7 @@ session_start();
                 <div id="textCarousel3">
                     <h1><u>MarketPlace</u></h1>
                     <p>We also sell peripherals to make complete the PC set. Visit our shop for checking the new stuff.</p>
-                    <button type="button" class="btn btn-danger">Shop</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='shop.php'">Shop</button>
                 </div>
             </div>
         </div>

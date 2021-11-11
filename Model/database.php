@@ -36,10 +36,10 @@ class database
         }
     }
 
-    public function insertProducts(products $products)     //insert new in table chat
+    public function insertProducts(products $products)     //insert new in products
     {
         try {
-            $query = "INSERT INTO pcautomate.products (`id`, `name`, `image`, `description`, `price`) VALUES (NULL, '{$products->getName()}', '{$products->getImage()}', '{$products->getDescription()}', '{$products->getPrice()}')";
+            $query = "INSERT INTO pcautomate.products (`id`, `name`, `image`, `description`, `price`) VALUES (NULL, '{$products->getName()}', '{$products->getImage()}', '{$products->getDescription()}', '{$products->getPrice()}');";
             $statement = $this->connection->prepare($query);
             $statement->execute();
         } catch (PDOException $exception) {
@@ -140,11 +140,22 @@ class database
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
+    public function getLastID()
+    {
+        try {
+            $query = "SELECT * from pcautomate.products ORDER BY id DESC LIMIT 1";
+            $result = $this->connection->prepare($query);
+            $result->execute();
 
+            return $result->fetchColumn();
 
-
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
 }
+
+
 ?>

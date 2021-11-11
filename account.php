@@ -19,6 +19,11 @@ $role = $foundUser->getRole();
 
 }
 
+if (isset($_SESSION['alert'])) {
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+}
+
 
 ?>
 
@@ -85,8 +90,8 @@ $role = $foundUser->getRole();
             echo '<div class="container">';
             echo '<h1 class="m-5">Welcome, admin</h1>';
             echo '<p class="mx-5 mb-5">So, what you wanna do today?!</p>';
-            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Add a Product</button>';
-            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2">Edit a product</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="addProduct()">Add a Product</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="editProduct()">Edit a product</button>';
             echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="makepc()">Create a template</button>';
             echo '</div>';
 
@@ -137,6 +142,14 @@ $role = $foundUser->getRole();
 
     function makepc(){
         location.href = 'create.php'
+    }
+
+    function addProduct(){
+        location.href = 'add-product.php'
+    }
+
+    function  editProduct(){
+        location.href = 'editProduct.php'
     }
 </script>
 </body>

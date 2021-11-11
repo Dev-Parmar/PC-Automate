@@ -7,7 +7,7 @@ class users
     private $name;
     private $email;
     private $password;
-    private  $role;
+    private $role;
 
 
     public function __construct($id, $name, $email, $password, $role)

@@ -4,9 +4,9 @@ class products
 {
 
     private $id;
-    private $name = "";
+    private $name;
     private $image;
-    private $description = "";
+    private $description;
     private $price;
 
     public function __construct($id, $name, $image, $description, $price)

@@ -51,7 +51,7 @@ if (isset($_SESSION['alert'])){
 
     <h1 class="login-text my-5 mx-2">Create Account</h1>
 
-    <form action="Controller/reg-valid.php" method="POST" id="registerForm" onsubmit="validate()">
+    <form action="Controller/reg-valid.php" method="POST" id="registerForm" onsubmit="return validate()">
         <div class="form-group row m-2">
             <label for="name" class="col-sm-4 col-form-label">Name</label>
             <div class="col-sm-8">

@@ -50,7 +50,7 @@ if (isset($_SESSION['alert'])){
 </nav>
 <div class="container ">
         <h1 class="login-text my-5">LOGIN</h1>
-        <form id='loginForm' action="Controller/log-valid.php" method="POST" onsubmit="validate()">
+        <form id='loginForm' action="Controller/log-valid.php" method="POST" onsubmit="return validate()">
             <div class="form-group row">
                 <label for="email" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
