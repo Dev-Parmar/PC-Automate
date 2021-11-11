@@ -47,10 +47,10 @@ class database
         }
     }
 
-    public function updateProducts(int $id, string $name, string $image, string $description, int $price)         //to update products
+    public function updateProducts($id, $name, $description, $price)         //to update products
     {
         try {
-            $query = "UPDATE pcautomate.products SET name = '{$name}', image= '{$image}', description='{$description}', price = '{$price}' WHERE id='{$id}'";
+            $query = "UPDATE pcautomate.products SET name = '{$name}', description='{$description}', price = '{$price}' WHERE id='{$id}'";
             $result = $this->connection->prepare($query);
             $result->execute();
         } catch (PDOException $exception) {
@@ -155,6 +155,29 @@ class database
             echo "ERROR : {$exception->getMessage()}";
         }
     }
+
+    public function findProduct(int $id)
+    {
+        try {
+            $query = "select * from pcautomate.products where id = '{$id}'";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            foreach ($statement->fetchAll() as $row) {
+                $products = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['price']);
+                return $products;
+            }
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
+
+
+
+
 }
 
 

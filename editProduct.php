@@ -2,6 +2,9 @@
 
 session_start();
 
+require_once 'Model/database.php';
+require_once 'Model/products.php';
+
 if (isset($_SESSION['alert'])) {
     echo $_SESSION['alert'];
     unset($_SESSION['alert']);
@@ -69,7 +72,101 @@ if (isset($_SESSION['alert'])) {
     </div>
 </nav>
 
+<div class="container">
+
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" id="editProduct" method="POST" onsubmit="return validate()">
+        <div class="form-group row m-5">
+            <label for="pid" class="col-sm-4 m-auto">Enter the id of product you want to edit</label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" name="pid" id="pid">
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" name="submit" class="btn btn-primary">Edit!</button>
+            </div><br />
+        </div>
+    </form>
+
+    <?php
+
+    if (isset($_POST['submit'])){
+        $pid = $_POST['pid'] ;
+
+        $_SESSION['pid'] = $pid;
+
+        $database = new database();
+
+        $foundProduct = $database->findProduct("$pid");
+
+        if (!(empty($foundProduct))) {
+            $name = $foundProduct->getName();
+            $image = $foundProduct->getImage();
+            $description = $foundProduct->getDescription();
+            $price = $foundProduct->getPrice();
+
+            echo '<div class="card mb-3 m-auto" style="max-width: 1000px;">';
+            echo '<div class="row g-0">';
+            echo '<div class="col-md-4 m-auto p-2">';
+            echo '<img src="images/products/'.$image.'" class="img-fluid rounded-start" alt="product image">';
+            echo '</div>';
+            echo '<div class="col-md-8">';
+            echo '<div class="card-body">';
+            echo '<h5 class="card-title px-auto">Product Found!</h5>';
+            ?>
+            <form class="card-text" id="updateProduct" action="Controller/edit-product.php" method="POST">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="name" id="name" value="<?= $name?>">
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <label for="description" class="col-sm-4 col-form-label">Description</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="description" name="description" rows="3"> <?= $description?></textarea>
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <label for="price" class="col-sm-4 col-form-label">Price</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" name="price" id="price" value="<?= $price?>">
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <button type="submit" name="submit" class="btn btn-primary">Edit!</button>
+                </div><br />
+            </form>
+<?php
+}else{
+    echo '<h1>No product found</h1>';
+}
+}
+?>
+
+</div>
+<script>
+    function logout(){
+        location.href = 'Controller/logout.php';
+    }
+
+    function  login(){
+        location.href = 'login.php';
+    }
+
+    function register(){
+        location.href = 'register.php';
+    }
+
+
+    function validate(){
+        let a = document.forms['editProduct']['pid'].value;
+
+        if (a == "" || a == null) {
+            alert("Please enter an id to search the product!");
+            return false;
+        }
+
+    }
 
 
 </body>
-</html>
+    </html>
