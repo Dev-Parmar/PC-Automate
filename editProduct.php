@@ -101,6 +101,7 @@ if (isset($_SESSION['alert'])) {
             $name = $foundProduct->getName();
             $image = $foundProduct->getImage();
             $description = $foundProduct->getDescription();
+            $category = $foundProduct->getCategory();
             $price = $foundProduct->getPrice();
 
             echo '<div class="card mb-3 m-auto" style="max-width: 1000px;">';
@@ -129,11 +130,56 @@ if (isset($_SESSION['alert'])) {
                 <label for="category" class="col-sm-4 col-form-label">Category</label>
                 <div class="col-sm-8">
                     <select class="form-control" aria-label="category" name="category" id="category">
-                        <option value="headphone" selected>Headphones</option>
-                        <option value="keyboard">Keyboards</option>
-                        <option value="mouse">Mouse</option>
-                        <option value="speaker">Speakers</option>
+                        <?php
+
+                        switch ($category){
+                            case 'headphone' :
+                                ?>
+                                <option value="headphone" selected>Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <?php
+                                break;
+
+                            case 'keyboard' :
+
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard" selected>Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+
+                                <?php
+                                break;
+
+                            case 'mouse' :
+
+                                ?>
+
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse" selected>Mouse</option>
+                                <option value="speaker">Speakers</option>
+
+                                <?php
+                                break;
+
+                            case 'speaker' :
+
+                                ?>
+
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker" selected>Speakers</option>
+                            <?php
+                        }
+
+                        ?>
+
                     </select>
+
                 </div>
                 </div><br />
                 <div class="form-group row">

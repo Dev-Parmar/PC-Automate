@@ -63,6 +63,14 @@ session_start();
     </div>
 </nav>
 
+
+
+
+
+
+
+
+
 <script>
     function logout(){
         location.href = 'Controller/logout.php';
