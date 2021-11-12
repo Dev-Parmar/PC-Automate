@@ -1,6 +1,10 @@
 <?php
 
-session_start();
+
+require_once 'Controller/config.php';
+require_once 'Model/database.php';
+require_once 'Model/products.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +53,7 @@ session_start();
                     <a class="nav-link" href="create.php">Make your PC</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Templates</a>
+                    <a class="nav-link" href="templates.php">Templates</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="shop.php">Shop</a>
@@ -62,6 +66,24 @@ session_start();
         </div>
     </div>
 </nav>
+
+
+<?php
+
+$category = $_GET['category'];
+
+$database = new database();
+
+$searchP = $database->searchProducts("$category");
+
+foreach ($searchP as $products){
+    $products->printProducts();
+
+
+}
+
+?>
+
 
 <script>
     function logout(){
@@ -76,5 +98,6 @@ session_start();
         location.href = 'register.php';
     }
 </script>
+
 </body>
 </html>

@@ -47,6 +47,12 @@ class products
     }
 
 
+    public function printProducts(){
+
+
+
+    }
+
 
 
 }

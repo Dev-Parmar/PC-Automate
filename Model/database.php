@@ -59,6 +59,28 @@ class database
 
     }
 
+    public function searchProducts($category)
+    {
+        try {
+            $query = "SELECT * FROM pcautomate.products WHERE category='{$category}'";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            $products = array();
+
+            foreach ($result->fetchAll() as $pr) {
+                $product = new products($pr['id'], $pr['name'], $pr['image'], $pr['description'], $pr['category'], $pr['price']);
+                array_push($products, $product);
+            }
+            return $products;
+
+        }catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
 
     public function findID(int $id)                 //to return users info using the id
     {

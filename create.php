@@ -63,6 +63,206 @@ session_start();
     </div>
 </nav>
 
+<div class="container-inline">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="m-3">Select the components of your PC</h2>
+            </div>
+            <div class="col-sm-4 m-auto">
+                <?php
+                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ){
+                    echo '<button type="button" class="btn btn-success col-sm-6">Share this template!</button>';
+                }
+                ?>
+            </div>
+        </div>
+        <br />
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Component</th>
+                <th scope="col">Product</th>
+                <th colspan="3" scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Processor</th>
+                <?php
+                if (isset($_SESSION['c1'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="propr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('processor')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">Motherboard</th>
+                <?php
+                if (isset($_SESSION['c2'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="motpr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('motherboard')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">CPU Cooler</th>
+                <?php
+                if (isset($_SESSION['c3'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="coolpr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('cooler')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">Case</th>
+                <?php
+                if (isset($_SESSION['c4'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="capr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('case')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">GPU</th>
+                <?php
+                if (isset($_SESSION['c5'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="gpr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('gpu')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">RAM</th>
+                <?php
+                if (isset($_SESSION['c6'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="rpr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('ram')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">Storage</th>
+                <?php
+                if (isset($_SESSION['c7'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="stopr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('storage')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">Power Supply</th>
+                <?php
+                if (isset($_SESSION['c8'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="pospr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('power')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tr>
+                <th scope="row">Monitor</th>
+                <?php
+                if (isset($_SESSION['c9'])){
+                    ?>
+                    <td>pr1</td>
+                    <td colspan="3">d1</td>
+                    <td id="monpr">r1</td>
+                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('monitor')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <tfoot>
+            <tr>
+                <th scope="col" colspan="5">Total</th>
+                <th scope="col" onload="addition()" id="sum"></th>
+
+                <?php
+                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ){
+                    echo '<th scope="col"><button type="button" class="btn btn-success">BUY!</button></th>';
+                }
+                ?>
+
+            </tr>
+            </tfoot>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
 <script>
     function logout(){
         location.href = 'Controller/logout.php';
@@ -75,6 +275,37 @@ session_start();
     function register(){
         location.href = 'register.php';
     }
+
+    function search(x){
+
+        location.href = 'search-product.php?category=' + x;
+
+
+    }
+
+    function addition(){
+        let propr = document.getElementById("propr").value;
+        let motpr = document.getElementById("motpr").value;
+        let coolpr = document.getElementById("coolpr").value;
+        let capr = document.getElementById("capr").value;
+        let gpr = document.getElementById("gpr").value;
+        let rpr = document.getElementById("rpr").value;
+        let stopr = document.getElementById("stopr").value;
+        let pospr = document.getElementById("pospr").value;
+        let monpr = document.getElementById("monpr").value;
+
+
+        document.getElementById("sum").innerHTML = propr + motpr + coolpr + capr + gpr + rpr + stopr + pospr + monpr;
+
+
+    }
+
+
+
+
+
 </script>
 </body>
 </html>
+
+
