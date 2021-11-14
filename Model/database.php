@@ -2,7 +2,7 @@
 
 require_once "users.php";
 require_once "products.php";
-
+require_once "templates.php";
 
 class database
 {
@@ -46,6 +46,22 @@ class database
             echo "ERROR : {$exception->getMessage()}";
         }
     }
+
+
+    public function insertTemplates(templates $templates)
+    {
+        try {
+            $query = "INSERT INTO pcautomate.templates (`id`, `processor`, `motherboard`, `cooler`,`cpucase`, `gpu`, `ram`,`storage`, `power`, `monitor`,`price`) VALUES (NULL, '{$templates->getProcessor()}', '{$templates->getMotherboard()}', '{$templates->getCooler()}','{$templates->getCPUCase()}', '{$templates->getGPU()}', '{$templates->getRAM()}', '{$templates->getStorage()}','{$templates->getPower()}', '{$templates->getMonitor()}', '{$templates->getPrice()}');";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
+
+
 
     public function updateProducts($id, $name, $description, $category ,$price)         //to update products
     {

@@ -75,9 +75,16 @@ require_once 'Model/products.php';
             </div>
             <div class="col-sm-4 m-auto">
                 <?php
-                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ){
-                    echo '<button type="button" class="btn btn-success col-sm-6">Share this template!</button>';
-                }
+
+                if (isset($_SESSION['id'])) {
+                    if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9'])) {
+                        echo '<button type="button" class="btn btn-success col-sm-6" onclick="share()">Share this template!</button>';
+                    }
+                    }else {
+                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ) {
+                    echo '<button type="button" class="btn btn-warning col-sm-8" onclick="login()">Login to Share this template!</button>';
+
+                }}
                 ?>
             </div>
         </div>
@@ -285,7 +292,6 @@ require_once 'Model/products.php';
                     <td id="pospr"><?= $c8->getPrice()?></td>
                     <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c8')"></button></td>
 
-
                     <?php
                 } else{
                     ?>
@@ -326,9 +332,17 @@ require_once 'Model/products.php';
                 <th scope="col"></th>
 
                 <?php
-                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ){
-                    echo '<th scope="col"><button type="button" class="btn btn-success">BUY!</button></th>';
+
+                if (isset($_SESSION['id'])){
+                    if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ) {
+                        echo '<th scope="col"><button type="button" class="btn btn-success">BUY!</button></th>';
+                    }
+                    }else{
+                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ) {
+                    echo '<th scope="col"><button type="button" class="btn btn-warning" onclick="login()">Login to BUY!</button></th>';
                 }
+                }
+
                 ?>
 
             </tr>
@@ -360,6 +374,10 @@ require_once 'Model/products.php';
 
     function removeProduct(x){
         location.href = 'Controller/remove-product.php?pid=' + x;
+    }
+
+    function share(){
+        location.href = 'Controller/share-template.php';
     }
 
     window.onload = addition();
@@ -440,7 +458,6 @@ require_once 'Model/products.php';
         let sum = Number(propr) + Number(motpr) + Number(coolpr) + Number(capr) + Number(gpr) + Number(rpr) + Number(stopr) + Number(pospr) + Number(monpr);
 
         document.getElementById("sum").innerHTML = '$' + sum;
-
 
 
     }
