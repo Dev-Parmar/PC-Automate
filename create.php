@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+
+require_once 'Model/database.php';
+require_once 'Model/products.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -94,11 +98,17 @@ session_start();
                 <th scope="row">Processor</th>
                 <?php
                 if (isset($_SESSION['c1'])){
+
+                    $datebasec1 = new database();
+
+                    $idc1 = $_SESSION['c1'];
+
+                    $c1 = $datebasec1->findProduct("$idc1");
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="propr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <td><?= $c1->getName()?></td>
+                    <td colspan="3"><?= $c1->getDescription()?></td>
+                    <td id="propr"><?= $c1->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c1')"></button></td>
                     <?php
                 } else{
                     ?>
@@ -111,11 +121,17 @@ session_start();
                 <th scope="row">Motherboard</th>
                 <?php
                 if (isset($_SESSION['c2'])){
+
+                    $datebasec2 = new database();
+
+                    $idc2 = $_SESSION['c2'];
+
+                    $c2 = $datebasec2->findProduct("$idc2");
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="motpr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <td><?= $c2->getName()?></td>
+                    <td colspan="3"><?= $c2->getDescription()?></td>
+                    <td id="motpr"><?= $c2->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c2')"></button></td>
                     <?php
                 } else{
                     ?>
@@ -128,11 +144,20 @@ session_start();
                 <th scope="row">CPU Cooler</th>
                 <?php
                 if (isset($_SESSION['c3'])){
+
+                    $datebasec3 = new database();
+
+                    $idc3 = $_SESSION['c3'];
+
+                    $c3 = $datebasec3->findProduct("$idc3");
+
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="coolpr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+
+                    <td><?= $c3->getName()?></td>
+                    <td colspan="3"><?= $c3->getDescription()?></td>
+                    <td id="coolpr"><?= $c3->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c3')"></button></td>
+
                     <?php
                 } else{
                     ?>
@@ -145,11 +170,21 @@ session_start();
                 <th scope="row">Case</th>
                 <?php
                 if (isset($_SESSION['c4'])){
+
+
+                    $datebasec4 = new database();
+
+                    $idc4 = $_SESSION['c4'];
+
+                    $c4 = $datebasec4->findProduct("$idc4");
+
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="capr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+
+                    <td><?= $c4->getName()?></td>
+                    <td colspan="3"><?= $c4->getDescription()?></td>
+                    <td id="capr"><?= $c4->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c4')"></button></td>
+
                     <?php
                 } else{
                     ?>
@@ -162,11 +197,19 @@ session_start();
                 <th scope="row">GPU</th>
                 <?php
                 if (isset($_SESSION['c5'])){
+
+                    $datebasec5 = new database();
+
+                    $idc5 = $_SESSION['c5'];
+
+                    $c5 = $datebasec5->findProduct("$idc5");
+
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="gpr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <td><?= $c5->getName()?></td>
+                    <td colspan="3"><?= $c5->getDescription()?></td>
+                    <td id="gpr"><?= $c5->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c5')"></button></td>
+
                     <?php
                 } else{
                     ?>
@@ -179,11 +222,19 @@ session_start();
                 <th scope="row">RAM</th>
                 <?php
                 if (isset($_SESSION['c6'])){
+
+                    $datebasec6 = new database();
+
+                    $idc6 = $_SESSION['c6'];
+
+                    $c6 = $datebasec6->findProduct("$idc6");
+
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="rpr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <td><?= $c6->getName()?></td>
+                    <td colspan="3"><?= $c6->getDescription()?></td>
+                    <td id="rpr"><?= $c6->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c6')"></button></td>
+
                     <?php
                 } else{
                     ?>
@@ -196,11 +247,19 @@ session_start();
                 <th scope="row">Storage</th>
                 <?php
                 if (isset($_SESSION['c7'])){
+
+                    $datebasec7 = new database();
+
+                    $idc7= $_SESSION['c7'];
+
+                    $c7 = $datebasec7->findProduct("$idc7");
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="stopr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+
+                    <td><?= $c7->getName()?></td>
+                    <td colspan="3"><?= $c7->getDescription()?></td>
+                    <td id="stopr"><?= $c7->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c7')"></button></td>
+
                     <?php
                 } else{
                     ?>
@@ -213,11 +272,20 @@ session_start();
                 <th scope="row">Power Supply</th>
                 <?php
                 if (isset($_SESSION['c8'])){
+
+                    $datebasec8 = new database();
+
+                    $idc8 = $_SESSION['c8'];
+
+                    $c8 = $datebasec8->findProduct("$idc8");
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="pospr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+
+                    <td><?= $c8->getName()?></td>
+                    <td colspan="3"><?= $c8->getDescription()?></td>
+                    <td id="pospr"><?= $c8->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c8')"></button></td>
+
+
                     <?php
                 } else{
                     ?>
@@ -230,11 +298,19 @@ session_start();
                 <th scope="row">Monitor</th>
                 <?php
                 if (isset($_SESSION['c9'])){
+
+                    $datebasec9 = new database();
+
+                    $idc9 = $_SESSION['c9'];
+
+                    $c9 = $datebasec9->findProduct("$idc9");
+
                     ?>
-                    <td>pr1</td>
-                    <td colspan="3">d1</td>
-                    <td id="monpr">r1</td>
-                    <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                    <td><?= $c9->getName()?></td>
+                    <td colspan="3"><?= $c9->getDescription()?></td>
+                    <td id="monpr"><?= $c9->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c9')"></button></td>
+
                     <?php
                 } else{
                     ?>
@@ -246,7 +322,8 @@ session_start();
             <tfoot>
             <tr>
                 <th scope="col" colspan="5">Total</th>
-                <th scope="col" onload="addition()" id="sum"></th>
+                <th scope="col" id="sum"></th>
+                <th scope="col"></th>
 
                 <?php
                 if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ){
@@ -277,25 +354,93 @@ session_start();
     }
 
     function search(x){
-
         location.href = 'search-product.php?category=' + x;
-
 
     }
 
+    function removeProduct(x){
+        location.href = 'Controller/remove-product.php?pid=' + x;
+    }
+
+    window.onload = addition();
+
     function addition(){
-        let propr = document.getElementById("propr").value;
-        let motpr = document.getElementById("motpr").value;
-        let coolpr = document.getElementById("coolpr").value;
-        let capr = document.getElementById("capr").value;
-        let gpr = document.getElementById("gpr").value;
-        let rpr = document.getElementById("rpr").value;
-        let stopr = document.getElementById("stopr").value;
-        let pospr = document.getElementById("pospr").value;
-        let monpr = document.getElementById("monpr").value;
+
+        let propr = document.getElementById("propr");
+        if (!propr){
+            propr = 0;
+        }else{
+            propr = propr.innerHTML.valueOf();
+        }
 
 
-        document.getElementById("sum").innerHTML = propr + motpr + coolpr + capr + gpr + rpr + stopr + pospr + monpr;
+        let motpr = document.getElementById("motpr");
+        if (!motpr){
+            motpr = 0;
+        }else{
+            motpr = motpr.innerHTML.valueOf();
+        }
+
+
+        let coolpr = document.getElementById("coolpr");
+        if (!coolpr){
+            coolpr = 0;
+        }else{
+            coolpr = coolpr.innerHTML.valueOf();
+        }
+
+
+        let capr = document.getElementById("capr");
+        if (!capr){
+            capr = 0;
+        }else{
+            capr = capr.innerHTML.valueOf();
+        }
+
+
+        let gpr = document.getElementById("gpr");
+        if (!gpr){
+            gpr = 0;
+        }else{
+            gpr = gpr.innerHTML.valueOf();
+        }
+
+
+        let rpr = document.getElementById("rpr");
+        if (!rpr){
+            rpr = 0;
+        }else{
+            rpr = rpr.innerHTML.valueOf();
+        }
+
+
+        let stopr = document.getElementById("stopr");
+        if (!stopr){
+            stopr = 0;
+        }else{
+            stopr = stopr.innerHTML.valueOf();
+        }
+
+
+        let pospr = document.getElementById("pospr");
+        if (!pospr){
+            pospr = 0;
+        }else{
+            pospr = pospr.innerHTML.valueOf();
+        }
+
+
+        let monpr = document.getElementById("monpr");
+        if (!monpr){
+            monpr = 0;
+        }else{
+            monpr = monpr.innerHTML.valueOf();
+        }
+
+        let sum = Number(propr) + Number(motpr) + Number(coolpr) + Number(capr) + Number(gpr) + Number(rpr) + Number(stopr) + Number(pospr) + Number(monpr);
+
+        document.getElementById("sum").innerHTML = '$' + sum;
+
 
 
     }

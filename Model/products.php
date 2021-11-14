@@ -48,11 +48,23 @@ class products
 
 
     public function printProducts(){
-
-
+        echo '<tr>';
+        echo '<td>'.$this->getName().'</td>';
+        echo '<td colspan="3">'.$this->getDescription().'</td>';
+        echo '<td id="propr">'.$this->getPrice().'</td>';
+        echo '<td><button type="button" class="btn btn-secondary" onclick="selectProduct('.$this->getID().')">ADD</button></td>';
+        echo '</tr>';
 
     }
 
+
+    public function addProducts(){
+        echo '<td>'.$this->getName().'</td>';
+        echo '<td colspan="3">'.$this->getDescription().'</td>';
+        echo '<td id="propr">'.$this->getPrice().'</td>';
+        echo '<td><button type="button" class="btn-close" aria-label="Close"></button></td>';
+
+    }
 
 
 }

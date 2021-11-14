@@ -149,7 +149,7 @@ if (isset($_SESSION['alert'])) {
     }
 
     function  editProduct(){
-        location.href = 'editProduct.php'
+        location.href = 'edit-product.php'
     }
 </script>
 </body>

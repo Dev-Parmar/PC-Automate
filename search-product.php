@@ -1,9 +1,15 @@
 <?php
+session_start();
 
-
-require_once 'Controller/config.php';
 require_once 'Model/database.php';
 require_once 'Model/products.php';
+
+$category = $_GET['category'];
+
+
+$database = new database();
+
+$searchP = $database->searchProducts("$category");
 
 ?>
 
@@ -67,22 +73,46 @@ require_once 'Model/products.php';
     </div>
 </nav>
 
+<div class="container">
+
+    <?php
+
+    if (!(empty($searchP))){
+        ?>
+
+        <h1 class="m-3">Available products</h1>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th colspan="3" scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php
+
+            foreach ($searchP as $products){
+                $products->printProducts();
+
+            }
+            ?>
+            </tbody>
+        </table>
+        </div>
+
 
 <?php
+    }else{
 
-$category = $_GET['category'];
+       echo ' <h1 class="m-3">Sorry, No products in stock!</h1>';
 
-$database = new database();
+    }
+    ?>
 
-$searchP = $database->searchProducts("$category");
-
-foreach ($searchP as $products){
-    $products->printProducts();
-
-
-}
-
-?>
 
 
 <script>
@@ -97,6 +127,12 @@ foreach ($searchP as $products){
     function register(){
         location.href = 'register.php';
     }
+
+    function selectProduct(pid){
+
+        location.href = 'Controller/add-component.php?id=' + pid ;
+    }
+
 </script>
 
 </body>
