@@ -66,5 +66,24 @@ class products
 
     }
 
+    public function products()
+    {
+        echo '<div class="card-deck my-3">';
+        echo '<div class="card">';
+        echo '<div class="row">';
+        echo '<div class="card-body col-sm-5">';
+        echo '<p class="card-title m-3">ID: '.$this->getName().'</p>';
+        echo '<img src="images/products/'.$this->getImage().'" class="card-img-top" style="width:200px;height:200px" alt="...">';
+        echo '<p class="card-text m-3">Description: '.$this->getDescription().'</p>';
+        echo '<p class="card-text m-3">Price: '.$this->getPrice().'</p>';
+        echo '<td><button type="button" class="btn btn-success col-sm-4 m-3">BUY</button></td>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '<br />';
+
+    }
+
 
 }

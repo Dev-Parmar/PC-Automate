@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once '../Model/database.php';
 require_once '../Model/templates.php';
 
@@ -14,6 +15,12 @@ $ram = $_SESSION['c6'];
 $storage = $_SESSION['c7'];
 $power = $_SESSION['c8'];
 $monitor = $_SESSION['c9'];
+$price = $_COOKIE['price'];
 
+$newTemplate = new templates(null, "$processor", "$motherboard", "$cooler", "$cpucase", "$gpu", "$ram", "$storage", "$power","$monitor", "$price");
 
-$newTemplate = new templates();
+$database->insertTemplates($newTemplate);
+
+unset($_COOKIE['price']);
+
+header("Location: ../templates.php");

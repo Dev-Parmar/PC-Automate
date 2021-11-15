@@ -139,6 +139,15 @@ if (isset($_SESSION['alert'])) {
                                 <option value="keyboard">Keyboards</option>
                                 <option value="mouse">Mouse</option>
                                 <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
                                 <?php
                                 break;
 
@@ -149,6 +158,15 @@ if (isset($_SESSION['alert'])) {
                                 <option value="keyboard" selected>Keyboards</option>
                                 <option value="mouse">Mouse</option>
                                 <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
 
                                 <?php
                                 break;
@@ -161,6 +179,15 @@ if (isset($_SESSION['alert'])) {
                                 <option value="keyboard">Keyboards</option>
                                 <option value="mouse" selected>Mouse</option>
                                 <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
 
                                 <?php
                                 break;
@@ -173,7 +200,182 @@ if (isset($_SESSION['alert'])) {
                                 <option value="keyboard">Keyboards</option>
                                 <option value="mouse">Mouse</option>
                                 <option value="speaker" selected>Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
                             <?php
+                                break;
+
+                            case 'processor' :
+                                ?>
+                                <option value="headphone" >Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor" selected>Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'motherboard' :
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard" selected>Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'cooler' :
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler" selected>CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'case' :
+                                ?>
+                                <option value="headphone" >Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case" selected>Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'gpu' :
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu" selected>GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'ram' :
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram" selected>RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'storage' :
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage" selected>Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'power' :
+                                ?>
+                                <option value="headphone">Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power" selected>Power Supply</option>
+                                <option value="monitor">Monitor</option>
+                                <?php
+                                break;
+
+                            case 'monitor' :
+                                ?>
+                                <option value="headphone" >Headphones</option>
+                                <option value="keyboard">Keyboards</option>
+                                <option value="mouse">Mouse</option>
+                                <option value="speaker">Speakers</option>
+                                <option value="processor">Processor</option>
+                                <option value="motherboard">Motherboard</option>
+                                <option value="cooler">CPU Cooler</option>
+                                <option value="case">Case</option>
+                                <option value="gpu">GPU</option>
+                                <option value="ram">RAM</option>
+                                <option value="storage">Storage</option>
+                                <option value="power">Power Supply</option>
+                                <option value="monitor" selected>Monitor</option>
+                                <?php
+                                break;
+
+
+
                         }
 
                         ?>

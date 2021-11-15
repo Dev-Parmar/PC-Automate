@@ -76,4 +76,22 @@ class templates
     }
 
 
+
+    public function printTemplate()
+    {
+        echo '<div class="card-deck my-3">';
+        echo '<div class="card">';
+        echo '<div class="row">';
+        echo '<div class="card-body col-sm-5">';
+        echo '<p class="card-title m-3">ID: ' . trim($this->getID()) . '</p>';
+        echo '<p class="card-text m-3">Price: '. trim($this->getPrice()) .'</p>';
+        echo '<td><button type="button" class="btn btn-success col-sm-4 m-3">BUY</button></td>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '<br />';
+
+    }
+
 }

@@ -459,8 +459,10 @@ require_once 'Model/products.php';
 
         document.getElementById("sum").innerHTML = '$' + sum;
 
+        console.log(document.cookie = "price=" + sum);
 
     }
+
 
 
 

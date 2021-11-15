@@ -61,8 +61,6 @@ class database
     }
 
 
-
-
     public function updateProducts($id, $name, $description, $category ,$price)         //to update products
     {
         try {
@@ -213,6 +211,47 @@ class database
     }
 
 
+    public function getTemplates(){
+        try {
+            $query = "select * from templates";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $templates = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['price']);
+                array_push($templates, $template);
+            }
+
+            return $templates;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
+    public function getShop(){
+        try {
+            $query = "select * from pcautomate.products";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $products = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $product = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['category'], $row['price']);
+                array_push($products, $product);
+            }
+
+            return $products;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
 
 
 

@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+require_once 'Model/database.php';
+require_once 'Model/templates.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +18,31 @@ session_start();
     <title>Welcome</title>
 
     <link rel="stylesheet" href="css/main.css">
+
+    <style>
+
+        html{
+            background-color: #fcf6c5;
+        }
+
+        .left{
+            float:left;
+            position: fixed;
+            width: 20%;
+            height: 50vh;
+            background-color: #00377a;
+            color: #fcf6c5;
+        }
+
+        .right{
+            float:right;
+            width:70%;
+            min-height: 100vh;
+
+        }
+
+
+    </style>
 
 </head>
 
@@ -63,7 +90,26 @@ session_start();
     </div>
 </nav>
 
+<div class="container-inline">
+    <div class="left">
+        <h2 class="m-3">Filters</h2>
 
+    </div>
+    <div class="right">
+        <h1 class="m-3">Custom build PCs</h1>
+        <?php
+
+        $database = new database();
+
+        $printShop = $database->getShop();
+
+        foreach ($printShop as $pro){
+            $pro->products();
+        }
+
+        ?>
+    </div>
+</div>
 
 
 
