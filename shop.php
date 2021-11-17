@@ -96,7 +96,7 @@ require_once 'Model/templates.php';
 
     </div>
     <div class="right">
-        <h1 class="m-3">Custom build PCs</h1>
+        <h1 class="m-3">PC Parts</h1>
         <?php
 
         $database = new database();

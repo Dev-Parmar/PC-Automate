@@ -51,7 +51,7 @@ class database
     public function insertTemplates(templates $templates)
     {
         try {
-            $query = "INSERT INTO pcautomate.templates (`id`, `processor`, `motherboard`, `cooler`,`cpucase`, `gpu`, `ram`,`storage`, `power`, `monitor`,`price`) VALUES (NULL, '{$templates->getProcessor()}', '{$templates->getMotherboard()}', '{$templates->getCooler()}','{$templates->getCPUCase()}', '{$templates->getGPU()}', '{$templates->getRAM()}', '{$templates->getStorage()}','{$templates->getPower()}', '{$templates->getMonitor()}', '{$templates->getPrice()}');";
+            $query = "INSERT INTO pcautomate.templates (`id`, `processor`, `motherboard`, `cooler`,`cpucase`, `gpu`, `ram`,`storage`, `power`, `monitor`,`price`, `comment`) VALUES (NULL, '{$templates->getProcessor()}', '{$templates->getMotherboard()}', '{$templates->getCooler()}','{$templates->getCPUCase()}', '{$templates->getGPU()}', '{$templates->getRAM()}', '{$templates->getStorage()}','{$templates->getPower()}', '{$templates->getMonitor()}', '{$templates->getPrice()}', NULL);";
             $statement = $this->connection->prepare($query);
             $statement->execute();
         } catch (PDOException $exception) {
@@ -72,6 +72,13 @@ class database
         }
 
     }
+
+    public function addComment($comment)
+    {
+
+    }
+
+
 
     public function searchProducts($category)
     {
@@ -221,7 +228,7 @@ class database
             $templates = array();
 
             foreach ($statement->fetchAll() as $row) {
-                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['price']);
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['price'], $row['comment']);
                 array_push($templates, $template);
             }
 
@@ -252,6 +259,33 @@ class database
             echo "ERROR : {$exception->getMessage()}";
         }
     }
+
+
+    public function filterProducts($price, $category)
+    {
+        try {
+            $query = "select * from pcautomate.products where price='{$price}' and category='{$category}'";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $products = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $product = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['category'], $row['price']);
+                array_push($products, $product);
+            }
+
+            return $products;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+
+    }
+
+
 
 
 

@@ -3,6 +3,9 @@
 session_start();
 require_once 'Model/database.php';
 require_once 'Model/templates.php';
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +26,7 @@ require_once 'Model/templates.php';
 
         html{
             background-color: #fcf6c5;
+
         }
 
         .left{
@@ -38,6 +42,7 @@ require_once 'Model/templates.php';
             float:right;
             width:70%;
             min-height: 100vh;
+            overflow: hidden;
 
         }
 
@@ -93,10 +98,38 @@ require_once 'Model/templates.php';
 <div class="container-inline">
         <div class="left">
             <h2 class="m-3">Filters</h2>
-
+            <form method='POST' action='Controller/filters.php' id='filters' name='filters'>
+                <div class="col-sm-8 m-auto">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="range" class="form-range" id="price" name="price" min="0" max="5000">
+                </div>
+                <div class="col-sm-8 m-auto">
+                    <select class="form-control" aria-label="category" name="category" id="category">
+                        <option value="select" selected>Select...</option>
+                        <option value="headphone">Headphones</option>
+                        <option value="keyboard">Keyboards</option>
+                        <option value="mouse">Mouse</option>
+                        <option value="speaker">Speakers</option>
+                        <option value="processor">Processor</option>
+                        <option value="motherboard">Motherboard</option>
+                        <option value="cooler">CPU Cooler</option>
+                        <option value="case">Case</option>
+                        <option value="gpu">GPU</option>
+                        <option value="ram">RAM</option>
+                        <option value="storage">Storage</option>
+                        <option value="power">Power Supply</option>
+                        <option value="monitor">Monitor</option>
+                    </select>
+                </div>
+                <div class="col-8 m-auto">
+                    <button type='submit' class='btn btn-primary' name="submit">Search</button>
+                </div>
+            </form>
         </div>
-        <div class="right">
-            <h1 class="m-3">Custom build PCs</h1>
+    <div class="right">
+        <h1 class="m-3">Custom build PCs</h1>
+
+
     <?php
 
     $database = new database();
@@ -123,6 +156,12 @@ require_once 'Model/templates.php';
     function register(){
         location.href = 'register.php';
     }
+
+    function sortPrice(){
+
+    }
+
+
 </script>
 </body>
 </html>
