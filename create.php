@@ -77,11 +77,11 @@ require_once 'Model/products.php';
                 <?php
 
                 if (isset($_SESSION['id'])) {
-                    if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9'])) {
+                    if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10'])) {
                         echo '<button type="button" class="btn btn-success col-sm-6" onclick="share()">Share this template!</button>';
                     }
                     }else {
-                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ) {
+                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10']) ) {
                     echo '<button type="button" class="btn btn-warning col-sm-8" onclick="login()">Login to Share this template!</button>';
 
                 }}
@@ -325,6 +325,31 @@ require_once 'Model/products.php';
                 }
                 ?>
             </tr>
+            <tr>
+                <th scope="row">Operating System</th>
+                <?php
+                if (isset($_SESSION['c10'])){
+
+                    $datebasec9 = new database();
+
+                    $idc10 = $_SESSION['c10'];
+
+                    $c10 = $datebasec9->findProduct("$idc10");
+
+                    ?>
+                    <td><?= $c10->getName()?></td>
+                    <td colspan="3"><?= $c10->getDescription()?></td>
+                    <td id="ospr"><?= $c10->getPrice()?></td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onclick="removeProduct('c10')"></button></td>
+
+                    <?php
+                } else{
+                    ?>
+                    <td colspan="6"><button type="button" class="btn btn-secondary" onclick="search('os')">ADD</button></td>
+                    <?php
+                }
+                ?>
+            </tr>
             <tfoot>
             <tr>
                 <th scope="col" colspan="5">Total</th>
@@ -334,11 +359,11 @@ require_once 'Model/products.php';
                 <?php
 
                 if (isset($_SESSION['id'])){
-                    if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ) {
+                    if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10']) ) {
                         echo '<th scope="col"><button type="button" class="btn btn-success">BUY!</button></th>';
                     }
                     }else{
-                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) ) {
+                if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10'])) {
                     echo '<th scope="col"><button type="button" class="btn btn-warning" onclick="login()">Login to BUY!</button></th>';
                 }
                 }
@@ -455,7 +480,14 @@ require_once 'Model/products.php';
             monpr = monpr.innerHTML.valueOf();
         }
 
-        let sum = Number(propr) + Number(motpr) + Number(coolpr) + Number(capr) + Number(gpr) + Number(rpr) + Number(stopr) + Number(pospr) + Number(monpr);
+        let ospr = document.getElementById("ospr");
+        if (!ospr){
+            ospr = 0;
+        }else{
+            ospr = monpr.innerHTML.valueOf();
+        }
+
+        let sum = Number(propr) + Number(motpr) + Number(coolpr) + Number(capr) + Number(gpr) + Number(rpr) + Number(stopr) + Number(pospr) + Number(monpr) + Number(ospr);
 
         document.getElementById("sum").innerHTML = '$' + sum;
 

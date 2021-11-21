@@ -51,7 +51,7 @@ class database
     public function insertTemplates(templates $templates)
     {
         try {
-            $query = "INSERT INTO pcautomate.templates (`id`, `processor`, `motherboard`, `cooler`,`cpucase`, `gpu`, `ram`,`storage`, `power`, `monitor`,`price`, `comment`) VALUES (NULL, '{$templates->getProcessor()}', '{$templates->getMotherboard()}', '{$templates->getCooler()}','{$templates->getCPUCase()}', '{$templates->getGPU()}', '{$templates->getRAM()}', '{$templates->getStorage()}','{$templates->getPower()}', '{$templates->getMonitor()}', '{$templates->getPrice()}', NULL);";
+            $query = "INSERT INTO pcautomate.templates (`id`, `processor`, `motherboard`, `cooler`,`cpucase`, `gpu`, `ram`,`storage`, `power`, `monitor`,`os`,`price`, `comment`) VALUES (NULL, '{$templates->getProcessor()}', '{$templates->getMotherboard()}', '{$templates->getCooler()}','{$templates->getCPUCase()}', '{$templates->getGPU()}', '{$templates->getRAM()}', '{$templates->getStorage()}','{$templates->getPower()}', '{$templates->getMonitor()}', '{$templates->getOS()}' ,'{$templates->getPrice()}', '{$templates->getComment()}'   );";
             $statement = $this->connection->prepare($query);
             $statement->execute();
         } catch (PDOException $exception) {
@@ -73,9 +73,15 @@ class database
 
     }
 
-    public function addComment($comment)
+    public function addComment($comment, $tid)
     {
-
+        try {
+            $query = "UPDATE pcautomate.templates SET comment = '{$comment}' WHERE id='{$tid}'";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
     }
 
 
@@ -220,7 +226,7 @@ class database
 
     public function getTemplates(){
         try {
-            $query = "select * from templates";
+            $query = "select * from templates order by id desc";
             $statement = $this->connection->prepare($query);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -228,7 +234,7 @@ class database
             $templates = array();
 
             foreach ($statement->fetchAll() as $row) {
-                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['price'], $row['comment']);
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'],$row['price'], $row['comment']);
                 array_push($templates, $template);
             }
 
@@ -264,7 +270,7 @@ class database
     public function filterProducts($price, $category)
     {
         try {
-            $query = "select * from pcautomate.products where price='{$price}' and category='{$category}'";
+            $query = "select * from pcautomate.products where price>='{$price}' and category='{$category}'";
             $statement = $this->connection->prepare($query);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -286,6 +292,69 @@ class database
     }
 
 
+    public function filterPrice($price)
+    {
+        try {
+            $query = "select * from pcautomate.products where price>='{$price}'";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $products = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $product = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['category'], $row['price']);
+                array_push($products, $product);
+            }
+
+            return $products;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+
+    }
+
+
+
+
+    public function filterTemplates($price){
+        try {
+            $query = "select * from pcautomate.templates where price>='{$price}'";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $templates = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'],$row['os'] ,$row['price'], $row['comment']);
+                array_push($templates, $template);
+            }
+
+            return $templates;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
+
+    public function getName($id)
+    {
+        try {
+            $query = "SELECT pcautomate.products.name from pcautomate.products where id={$id}";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+
+            return $result->fetchColumn();
+            return $result->fetchColumn();
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
 
 
 

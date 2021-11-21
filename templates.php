@@ -4,7 +4,17 @@ session_start();
 require_once 'Model/database.php';
 require_once 'Model/templates.php';
 
+if (isset($_SESSION['id'])){
+    $sid = 1;
+}else{
+    $sid = 0;
+}
 
+
+if (isset($_SESSION['alert'])) {
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+}
 
 ?>
 
@@ -98,31 +108,19 @@ require_once 'Model/templates.php';
 <div class="container-inline">
         <div class="left">
             <h2 class="m-3">Filters</h2>
-            <form method='POST' action='Controller/filters.php' id='filters' name='filters'>
+            <form method='POST' action='Controller/filter-template.php' id='filters' name='filters'>
                 <div class="col-sm-8 m-auto">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="range" class="form-range" id="price" name="price" min="0" max="5000">
-                </div>
-                <div class="col-sm-8 m-auto">
-                    <select class="form-control" aria-label="category" name="category" id="category">
-                        <option value="select" selected>Select...</option>
-                        <option value="headphone">Headphones</option>
-                        <option value="keyboard">Keyboards</option>
-                        <option value="mouse">Mouse</option>
-                        <option value="speaker">Speakers</option>
-                        <option value="processor">Processor</option>
-                        <option value="motherboard">Motherboard</option>
-                        <option value="cooler">CPU Cooler</option>
-                        <option value="case">Case</option>
-                        <option value="gpu">GPU</option>
-                        <option value="ram">RAM</option>
-                        <option value="storage">Storage</option>
-                        <option value="power">Power Supply</option>
-                        <option value="monitor">Monitor</option>
-                    </select>
+                    <label for="price" class="form-label">-> Price <?php if (isset($_SESSION['temPr'])){echo'('.$_SESSION['temPr'].')';}?></label>
+                    <div class="row">
+                        <div class="col-sm-2">$0</div>
+                        <div class="col-sm-2" style="margin-left: 50%;">$10000</div>
+                    </div>
+                    <input type="range" class="form-range" id="price" name="price" min="0" max="10000">
                 </div>
                 <div class="col-8 m-auto">
                     <button type='submit' class='btn btn-primary' name="submit">Search</button>
+                    <a href="Controller/reset.php?filter=template" class="button" style="background-color: white; text-decoration: none;padding:7px; margin-left: 20%;">RESET</a>
+
                 </div>
             </form>
         </div>
@@ -132,14 +130,51 @@ require_once 'Model/templates.php';
 
     <?php
 
-    $database = new database();
 
-    $printTemplate = $database->getTemplates();
+    if (isset($_GET['filter'])){
 
-    foreach ($printTemplate as $template){
-        $template->printTemplate();
+        $tem  = $_GET['filter'];
+
+        switch ($tem){
+            case 'filtered':
+
+                $temPr = $_SESSION['temPr'];
+
+                $database2 = new database();
+
+                $printTemp = $database2->filterTemplates($temPr);
+
+                foreach ($printTemp as $template){
+                    $template->printTemplate($sid);
+                }
+
+                break;
+
+
+            default :
+
+                $database1 = new database();
+
+                $printTemplate = $database1->getTemplates();
+
+                foreach ($printTemplate as $template){
+                    $template->printTemplate($sid);
+                }
+
+                break;
+        }
+
+    }else{
+
+        $database = new database();
+
+        $printTemplate = $database->getTemplates();
+
+        foreach ($printTemplate as $template){
+            $template->printTemplate($sid);
+        }
+
     }
-
     ?>
         </div>
     </div>
@@ -157,9 +192,7 @@ require_once 'Model/templates.php';
         location.href = 'register.php';
     }
 
-    function sortPrice(){
 
-    }
 
 
 </script>

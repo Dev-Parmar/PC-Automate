@@ -51,7 +51,7 @@ class products
         echo '<tr>';
         echo '<td>'.$this->getName().'</td>';
         echo '<td colspan="3">'.$this->getDescription().'</td>';
-        echo '<td id="propr">'.$this->getPrice().'</td>';
+        echo '<td id="propr"><b>'.$this->getPrice().'</b></td>';
         echo '<td><button type="button" class="btn btn-secondary" onclick="selectProduct('.$this->getID().')">ADD</button></td>';
         echo '</tr>';
 
@@ -61,21 +61,21 @@ class products
     public function addProducts(){
         echo '<td>'.$this->getName().'</td>';
         echo '<td colspan="3">'.$this->getDescription().'</td>';
-        echo '<td id="propr">'.$this->getPrice().'</td>';
+        echo '<td id="propr"><b>'.$this->getPrice().'</b></td>';
         echo '<td><button type="button" class="btn-close" aria-label="Close"></button></td>';
 
     }
 
     public function products()
     {
-        echo '<div class="card-deck my-3">';
+        echo '<div class="card-deck my-3" style="text-align: center;">';
         echo '<div class="card">';
         echo '<div class="row">';
         echo '<div class="card-body col-sm-5">';
-        echo '<p class="card-title mx-3">ID: '.$this->getName().'</p>';
-        echo '<img src="images/products/'.$this->getImage().'" class="card-img-top" style="width:200px;height:200px" alt="...">';
-        echo '<p class="card-text mx-3">Description: '.$this->getDescription().'</p>';
-        echo '<p class="card-text mx-3">Price: '.$this->getPrice().'</p>';
+        echo '<h1 class="card-title mx-3">'.$this->getName().'</h1>';
+        echo '<img src="images/products/'.$this->getImage().'" class="card-img-top m-3" style="width:400px;height:200px" alt="...">';
+        echo '<p class="card-text mx-3">'.$this->getDescription().'</p>';
+        echo '<h2 class="card-text mx-3"><b>Price: </b>$'.$this->getPrice().'</h2>';
         echo '<td><button type="button" class="btn btn-success col-sm-4 mx-3">BUY</button></td>';
         echo '</div>';
         echo '</div>';

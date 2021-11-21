@@ -116,6 +116,7 @@ if (isset($_SESSION['alert'])) {
                 <option value="storage">Storage</option>
                 <option value="power">Power Supply</option>
                 <option value="monitor">Monitor</option>
+                <option value="os">Operating System</option>
             </select>
             </div>
         </div>

@@ -38,6 +38,7 @@ require_once 'Model/templates.php';
             float:right;
             width:70%;
             min-height: 100vh;
+            overflow: hidden;
 
         }
 
@@ -93,27 +94,154 @@ require_once 'Model/templates.php';
 <div class="container-inline">
     <div class="left">
         <h2 class="m-3">Filters</h2>
+        <form method='POST' action='Controller/filters.php' id='filters' name='filters'>
+            <div class="col-sm-8 m-auto">
+                <label for="price" class="form-label">-> Price <?php if (isset($_SESSION['pr'])){echo'('.$_SESSION['pr'].')';}?></label>
+                <div class="row">
+                    <div class="col-sm-2">$0</div>
+                    <div class="col-sm-2" style="margin-left: 50%;">$1000</div>
+                </div>
+                <?php
+
+                if (isset($_SESSION['pr'])){
+
+                    echo '<input type="range" class="form-range" id="price" value="'.$_SESSION['pr'].'" name="price" min="0" max="1000">';
+
+                }else {
+                    echo '<input type="range" class="form-range" id="price" name="price" min="0" max="1000">';
+                }
+
+                ?>
+
+            </div>
+            <div class="col-sm-8 m-auto">
+                <label for="category" class="form-label">-> Category <?php if (isset($_SESSION['cat'])){echo'('.$_SESSION['cat'].')';}?></label>
+                <select class="form-control" aria-label="category" name="category" id="category">
+                    <option value="select" selected>Select...</option>
+                    <option value="headphone">Headphones</option>
+                    <option value="keyboard">Keyboards</option>
+                    <option value="mouse">Mouse</option>
+                    <option value="speaker">Speakers</option>
+                    <option value="processor">Processor</option>
+                    <option value="motherboard">Motherboard</option>
+                    <option value="cooler">CPU Cooler</option>
+                    <option value="case">Case</option>
+                    <option value="gpu">GPU</option>
+                    <option value="ram">RAM</option>
+                    <option value="storage">Storage</option>
+                    <option value="power">Power Supply</option>
+                    <option value="monitor">Monitor</option>
+                    <option value="os">Operating System</option>
+                </select>
+            </div>
+            <br />
+            <div class="col-sm-8 m-auto">
+                <button type='submit' class='btn btn-primary' name="submit">Search</button>
+                <a href="Controller/reset.php?filter=shop" class="button" style="background-color: white; text-decoration: none;padding:7px; margin-left: 20%;">RESET</a>
+
+            </div>
+        </form>
+
 
     </div>
     <div class="right">
         <h1 class="m-3">PC Parts</h1>
         <?php
 
-        $database = new database();
 
-        $printShop = $database->getShop();
+        if (isset($_GET['filter'])){
 
-        foreach ($printShop as $pro){
-            $pro->products();
+            $filter = $_GET['filter'];
+
+            switch ($filter){
+                case 'withCat':
+
+                    $database = new database();
+
+                    $pr = $_SESSION['pr'];
+
+                    $cat = $_SESSION['cat'];
+
+                    $filterProducts = $database->filterProducts("$pr", "$cat");
+
+                    if ($filterProducts) {
+                        foreach ($filterProducts as $pro) {
+                            $pro->products();
+                        }
+                    }else{
+                        echo '<h2 class="m-3">No Products Found!</h2>';
+                    }
+                    break;
+
+                case 'noCat':
+                    $pr = $_SESSION['pr'];
+
+                    $database2 = new database();
+
+                    $filterShop = $database2->filterPrice("$pr");
+
+                    if ($filterShop) {
+                        foreach ($filterShop as $shop) {
+                            $shop->products();
+                        }
+                    }else{
+                        echo '<h2 class="m-3">No Products Found!</h2>';
+                    }
+
+                    break;
+
+                case 'onPr' :
+
+                    $pr = $_SESSION['pr'];
+
+                    $database2 = new database();
+
+                    $filterShop = $database2->filterPrice("$pr");
+
+                    if ($filterShop){
+                    foreach ($filterShop as $shop)
+                    {
+                        $shop->products();
+                    }
+                    }else{
+                        echo '<h2 class="m-3">No Products Found!</h2>';
+                    }
+
+                    break;
+
+                default :
+
+                    $database1 = new database();
+                    $filterShop = $database1->getShop();
+
+                    if ($filterShop) {
+                        foreach ($filterShop as $shop) {
+                            $shop->products();
+                        }
+                    }else{
+                        echo '<h2 class="m-3">No Products Found!</h2>';
+                    }
+
+            }
+
+        }else{
+            $database2 = new database();
+
+            $filterSh = $database2->getShop();
+
+            if ($filterSh) {
+                foreach ($filterSh as $shop) {
+                    $shop->products();
+                }
+            }else{
+                echo '<h1>No Products Found!</h1>';
+            }
+
         }
 
         ?>
     </div>
 </div>
-
-
-
-
 
 
 
@@ -128,6 +256,10 @@ require_once 'Model/templates.php';
 
     function register(){
         location.href = 'register.php';
+    }
+
+    function reset(){
+        location.href = 'Controller/reset.php';
     }
 </script>
 </body>
