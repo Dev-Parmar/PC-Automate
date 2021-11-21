@@ -2,6 +2,15 @@
 
 session_start();
 
+unset($_SESSION['pr']);
+unset($_SESSION['cat']);
+unset($_SESSION['temPr']);
+
+require_once 'Model/database.php';
+require_once 'Model/products.php';
+require_once 'Model/templates.php';
+require_once 'Model/users.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -109,58 +118,25 @@ session_start();
     <div class="container-inline" style="background-color: #00377a">
         <h1 id="cusPC">Latest Shared Customized PCs</h1>
         <div class="row m-auto p-5" style="max-width: 100%;">
-            <div class="col-sm-6 col-md-4 " >
-                <div class="card p-2 " style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="card p-2" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="card p-2" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+            <?php
 
+            $database = new database();
+
+            $get3Templates = $database->get3Templates();
+
+            foreach ($get3Templates as $temp){
+                $temp->print3Templates();
+            }
+            ?>
+        </div>
     </div>
     <div class="container-inline m-auto" style="background-color: #fcf6c5;">
         <h1 id="per">Peripherals</h1>
         <div class="row p-5" style="max-width: 100%;">
-            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Headphones</button>
-            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Keyboards</button>
-            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Mouse</button>
-            <button type="button" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Speakers</button>
+            <button type="button" onclick="headphone()" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Headphones</button>
+            <button type="button" onclick="keyboard()" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Keyboards</button>
+            <button type="button" onclick="mouse()" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Mouse</button>
+            <button type="button" onclick="speaker()" class="btn btn-outline-secondary col-md-5 m-5 p-3 my-5">Speakers</button>
         </div>
     </div>
 </div>
@@ -178,6 +154,21 @@ session_start();
 
     function register(){
         location.href = 'register.php';
+    }
+    function headphone(){
+        location.href = 'Controller/homepage-filter.php?cat=headphone';
+    }
+    function keyboard(){
+        location.href = 'Controller/homepage-filter.php?cat=keyboard';
+    }
+    function mouse(){
+        location.href = 'Controller/homepage-filter.php?cat=mouse';
+    }
+    function speaker(){
+        location.href = 'Controller/homepage-filter.php?cat=speaker';
+    }
+    function cart(){
+        location.href = 'cart.php';
     }
 </script>
 </body>

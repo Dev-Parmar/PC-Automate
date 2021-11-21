@@ -4,6 +4,9 @@ session_start();
 require_once 'Model/database.php';
 require_once 'Model/templates.php';
 
+unset($_SESSION['pr']);
+unset($_SESSION['cat']);
+
 if (isset($_SESSION['id'])){
     $sid = 1;
 }else{
@@ -34,7 +37,7 @@ if (isset($_SESSION['alert'])) {
 
     <style>
 
-        html{
+        body{
             background-color: #fcf6c5;
 
         }
@@ -144,8 +147,12 @@ if (isset($_SESSION['alert'])) {
 
                 $printTemp = $database2->filterTemplates($temPr);
 
-                foreach ($printTemp as $template){
-                    $template->printTemplate($sid);
+                if ($printTemp) {
+                    foreach ($printTemp as $template) {
+                        $template->printTemplate($sid);
+                    }
+                }else{
+                    echo '<h2 class="m-3">No Templates Found!</h2>';
                 }
 
                 break;
@@ -157,8 +164,12 @@ if (isset($_SESSION['alert'])) {
 
                 $printTemplate = $database1->getTemplates();
 
-                foreach ($printTemplate as $template){
-                    $template->printTemplate($sid);
+                if ($printTemplate) {
+                    foreach ($printTemplate as $template) {
+                        $template->printTemplate($sid);
+                    }
+                }else{
+                    echo '<h2 class="m-3">No Templates Found!</h2>';
                 }
 
                 break;
@@ -170,8 +181,12 @@ if (isset($_SESSION['alert'])) {
 
         $printTemplate = $database->getTemplates();
 
-        foreach ($printTemplate as $template){
-            $template->printTemplate($sid);
+        if ($printTemplate) {
+            foreach ($printTemplate as $template) {
+                $template->printTemplate($sid);
+            }
+        }else{
+            echo '<h2 class="m-3">No Templates Found!</h2>';
         }
 
     }
@@ -191,6 +206,10 @@ if (isset($_SESSION['alert'])) {
     function register(){
         location.href = 'register.php';
     }
+    function cart(){
+        location.href = 'cart.php';
+    }
+
 
 
 

@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+
+unset($_SESSION['temPr']);
+
 require_once 'Model/database.php';
 require_once 'Model/templates.php';
 ?>
@@ -21,7 +24,7 @@ require_once 'Model/templates.php';
 
     <style>
 
-        html{
+        body{
             background-color: #fcf6c5;
         }
 
@@ -96,7 +99,7 @@ require_once 'Model/templates.php';
         <h2 class="m-3">Filters</h2>
         <form method='POST' action='Controller/filters.php' id='filters' name='filters'>
             <div class="col-sm-8 m-auto">
-                <label for="price" class="form-label">-> Price <?php if (isset($_SESSION['pr'])){echo'('.$_SESSION['pr'].')';}?></label>
+                <label for="price" class="form-label">Price: <?php if (isset($_SESSION['pr'])){echo$_SESSION['pr'];}?></label>
                 <div class="row">
                     <div class="col-sm-2">$0</div>
                     <div class="col-sm-2" style="margin-left: 50%;">$1000</div>
@@ -115,7 +118,7 @@ require_once 'Model/templates.php';
 
             </div>
             <div class="col-sm-8 m-auto">
-                <label for="category" class="form-label">-> Category <?php if (isset($_SESSION['cat'])){echo'('.$_SESSION['cat'].')';}?></label>
+                <label for="category" class="form-label">Category: <?php if (isset($_SESSION['cat'])){echo$_SESSION['cat'];}?></label>
                 <select class="form-control" aria-label="category" name="category" id="category">
                     <option value="select" selected>Select...</option>
                     <option value="headphone">Headphones</option>
@@ -261,6 +264,10 @@ require_once 'Model/templates.php';
     function reset(){
         location.href = 'Controller/reset.php';
     }
+    function cart(){
+        location.href = 'cart.php';
+    }
+
 </script>
 </body>
 </html>

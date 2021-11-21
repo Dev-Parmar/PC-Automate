@@ -245,6 +245,35 @@ class database
         }
     }
 
+
+
+
+    public function get3Templates(){
+        try {
+            $query = "select * from templates order by id desc limit 3";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $templates = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'],$row['price'], $row['comment']);
+                array_push($templates, $template);
+            }
+
+            return $templates;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
+
+
+
+
+
     public function getShop(){
         try {
             $query = "select * from pcautomate.products";

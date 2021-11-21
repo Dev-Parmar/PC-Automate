@@ -2,6 +2,10 @@
 
 session_start();
 
+unset($_SESSION['pr']);
+unset($_SESSION['cat']);
+unset($_SESSION['temPr']);
+
 require_once 'Model/database.php';
 require_once 'Model/products.php';
 
@@ -79,6 +83,7 @@ require_once 'Model/products.php';
                 if (isset($_SESSION['id'])) {
                     if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10'])) {
                         echo '<button type="button" class="btn btn-success col-sm-6" onclick="share()">Share this template!</button>';
+                        echo '<button type="button" class="btn btn-outline-warning col-sm-6" onclick="reset()">RESET</button>';
                     }
                     }else {
                 if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10']) ) {
@@ -360,7 +365,7 @@ require_once 'Model/products.php';
 
                 if (isset($_SESSION['id'])){
                     if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10']) ) {
-                        echo '<th scope="col"><button type="button" class="btn btn-success">BUY!</button></th>';
+                        echo '<th scope="col"><button type="button" class="btn btn-success" onclick="cart()">BUY!</button></th>';
                     }
                     }else{
                 if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10'])) {
@@ -404,7 +409,13 @@ require_once 'Model/products.php';
     function share(){
         location.href = 'Controller/share-template.php';
     }
+    function cart(){
+        location.href = 'cart.php';
+    }
 
+    function reset(){
+        location.href = 'Controller/reset-create.php';
+    }
     window.onload = addition();
 
     function addition(){
@@ -484,7 +495,7 @@ require_once 'Model/products.php';
         if (!ospr){
             ospr = 0;
         }else{
-            ospr = monpr.innerHTML.valueOf();
+            ospr = ospr.innerHTML.valueOf();
         }
 
         let sum = Number(propr) + Number(motpr) + Number(coolpr) + Number(capr) + Number(gpr) + Number(rpr) + Number(stopr) + Number(pospr) + Number(monpr) + Number(ospr);

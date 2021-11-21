@@ -2,6 +2,10 @@
 
 session_start();
 
+unset($_SESSION['pr']);
+unset($_SESSION['cat']);
+unset($_SESSION['temPr']);
+
 require_once 'Model/database.php';
 require_once 'Model/users.php';
 
