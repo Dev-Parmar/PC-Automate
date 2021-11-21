@@ -1,9 +1,17 @@
 <?php
 
-session_start();
+require_once '../Model/database.php';
+require_once '../Model/products.php';
+require_once '../Model/templates.php';
 
-echo '<form action="comment.php" id="comment" name="comment" method="POST">';
-echo '<div class="mb-3">';
+if (isset($_POST['submit'])) {
+    $tid = $_GET['tid'];
+    $comment = $_POST['comment'];
 
+    $database = new database();
 
+    $addComment = $database->addComment($comment, $tid);
 
+    header("Location: ../templates.php");
+
+}

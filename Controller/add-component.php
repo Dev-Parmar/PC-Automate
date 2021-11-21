@@ -14,7 +14,6 @@ $product = $database->findProduct("$pid");
 
 $category = $product->getCategory();
 
-var_dump($category);
 
 switch ($category){
 
@@ -104,6 +103,15 @@ switch ($category){
         header("Location: ../create.php");
 
         break;
+
+    case 'os' :
+
+        $_SESSION['c10'] = $pid;
+
+        header("Location: ../create.php");
+
+        break;
+
 
 }
 

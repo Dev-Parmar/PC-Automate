@@ -96,6 +96,16 @@ switch ($pid){
 
         break;
 
+    case 'c10' :
+
+        unset($_SESSION['c10']);
+
+        header("Location: ../create.php");
+
+        break;
+
+
+
 }
 
 

@@ -31,7 +31,8 @@ if (isset($_POST['submit'])) {
 
             $newProducts = new products (null, "$name", "$imageName", "$description","$category", "$price");
 
-            $database->insertProducts($newProducts);               //to add a new product
+            $database->insertProducts($newProducts);//to add a new product
+
 
             $_SESSION['alert'] = "<script>alert('Product Added Successfully!')</script>";
             header("Location: ../account.php");

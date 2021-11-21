@@ -15,12 +15,20 @@ $ram = $_SESSION['c6'];
 $storage = $_SESSION['c7'];
 $power = $_SESSION['c8'];
 $monitor = $_SESSION['c9'];
+$os = $_SESSION['c10'];
 $price = $_COOKIE['price'];
 
-$newTemplate = new templates(null, "$processor", "$motherboard", "$cooler", "$cpucase", "$gpu", "$ram", "$storage", "$power","$monitor", "$price");
+$newTemplate = new templates(null, "$processor", "$motherboard", "$cooler", "$cpucase", "$gpu", "$ram", "$storage", "$power","$monitor","$os" ,"$price","Add a comment!");
 
 $database->insertTemplates($newTemplate);
 
 unset($_COOKIE['price']);
 
-header("Location: ../templates.php");
+if ($database) {
+    $_SESSION['alert'] = "<script>alert('Template shared Successfully!')</script>";
+    header("Location: ../templates.php");
+
+}else{
+    $_SESSION['alert'] = "<script>alert('Some error occurred!')</script>";
+    header("Location: ../templates.php");
+}
