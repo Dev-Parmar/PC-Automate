@@ -8,15 +8,23 @@ class users
     private $email;
     private $password;
     private $role;
+    private $cnumber;
+    private $emonth;
+    private $eyear;
+    private $cvv;
 
 
-    public function __construct($id, $name, $email, $password, $role)
+    public function __construct($id, $name, $email, $password, $role, $cnumber, $emonth, $eyear, $cvv)
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
+        $this->cnumber = $cnumber;
+        $this->emonth = $emonth;
+        $this->eyear = $eyear;
+        $this->cvv = $cvv;
 
     }
 
@@ -44,6 +52,23 @@ class users
     public function getRole()
     {
         return $this->role;
+    }
+
+    public function getCNumber()
+    {
+        return $this->cnumber;
+    }
+    public function getEMonth()
+    {
+        return $this->emonth;
+    }
+    public function getEYear()
+    {
+        return $this->eyear;
+    }
+    public function getCVV()
+    {
+        return $this->cvv;
     }
 
 

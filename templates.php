@@ -206,9 +206,7 @@ if (isset($_SESSION['alert'])) {
     function register(){
         location.href = 'register.php';
     }
-    function cart(){
-        location.href = 'cart.php';
-    }
+
 
 
 

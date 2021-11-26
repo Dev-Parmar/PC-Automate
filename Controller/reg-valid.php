@@ -12,6 +12,10 @@ if (isset($_POST['submit'])) {
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
     $role = 'builder';
+    $cnumber = htmlspecialchars($_POST['cnumber']);
+    $emonth = htmlspecialchars($_POST['emonth']);
+    $eyear = htmlspecialchars($_POST['eyear']);
+    $cvv = htmlspecialchars($_POST['cvv']);
 
     $database = new database();
 
@@ -19,7 +23,7 @@ if (isset($_POST['submit'])) {
     if (empty($checkName)) {
         $checkEmail = $database->checkEmail("$email");
         if (empty($checkEmail)) {
-            $newUser = new users (null, "$name", "$email", "$password", "$role");
+            $newUser = new users (null, "$name", "$email", "$password", "$role", "$cnumber" , "$emonth", "$eyear", "$cvv");
             $database->insertUser($newUser);
 
             if ($database) {

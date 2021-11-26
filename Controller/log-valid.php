@@ -22,6 +22,10 @@ if (isset($_POST['submit'])) {
         $_SESSION['email'] = $result->getEmail();
         $_SESSION['password'] = $result->getPassword();
         $_SESSION['role'] = $result->getRole();
+        $_SESSION['cnumber'] = $result->getCNumber();
+        $_SESSION['emonth'] = $result->getEMonth();
+        $_SESSION['eyear'] = $result->getEYear();
+        $_SESSION['cvv'] = $result->getCVV();
         header("Location: ../index.php");
     } else {
         $_SESSION['alert'] = "<script>alert('Whoops! Username or Password is Incorrect!')</script>";

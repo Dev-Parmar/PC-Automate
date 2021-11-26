@@ -264,9 +264,6 @@ require_once 'Model/templates.php';
     function reset(){
         location.href = 'Controller/reset.php';
     }
-    function cart(){
-        location.href = 'cart.php';
-    }
 
 </script>
 </body>

@@ -11,6 +11,11 @@ require_once 'Model/products.php';
 require_once 'Model/templates.php';
 require_once 'Model/users.php';
 
+if (isset($_SESSION['alert'])){
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -166,9 +171,6 @@ require_once 'Model/users.php';
     }
     function speaker(){
         location.href = 'Controller/homepage-filter.php?cat=speaker';
-    }
-    function cart(){
-        location.href = 'cart.php';
     }
 </script>
 </body>

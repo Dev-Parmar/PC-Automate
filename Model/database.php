@@ -25,10 +25,11 @@ class database
         }
     }
 
-    public function insertUser(users $users)     //Add new User
+
+    public function insertUser(users $users)
     {
         try {
-            $query = "INSERT INTO pcautomate.users (`id`, `name`, `email`, `password`, `role`) VALUES (NULL, '{$users->getName()}', '{$users->getEmail()}', '{$users->getPassword()}', '{$users->getRole()}');";
+            $query = "INSERT INTO pcautomate.users (`id`, `name`, `email`, `password`, `role`, `cnumber`, `emonth`, `eyear`, `cvv`) VALUES (NULL, '{$users->getName()}', '{$users->getEmail()}', '{$users->getPassword()}', '{$users->getRole()}', '{$users->getCNumber()}', '{$users->getEMonth()}', '{$users->getEYear()}', '{$users->getCVV()}');";
             $statement = $this->connection->prepare($query);
             $statement->execute();
         } catch (PDOException $exception) {
@@ -36,7 +37,8 @@ class database
         }
     }
 
-    public function insertProducts(products $products)     //insert new in products
+
+    public function insertProducts(products $products)
     {
         try {
             $query = "INSERT INTO pcautomate.products (`id`, `name`, `image`, `description`,`category`, `price`) VALUES (NULL, '{$products->getName()}', '{$products->getImage()}', '{$products->getDescription()}','{$products->getCategory()}', '{$products->getPrice()}');";
@@ -59,6 +61,19 @@ class database
         }
 
     }
+
+    public function insertOrders(orders $orders)
+    {
+        try {
+            $query = "INSERT INTO pcautomate.orders (`id`, `user`, `orders`, `type`) VALUES (NULL, '{$orders->getUser()}', '{$orders->getOrders()}', '{$orders->getType()}');";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
 
 
     public function updateProducts($id, $name, $description, $category ,$price)         //to update products
@@ -118,7 +133,7 @@ class database
             $statement->setFetchMode(PDO::FETCH_ASSOC);
 
             foreach ($statement->fetchAll() as $row) {
-                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role'], $row['cnumber'], $row['emonth'], $row['eyear'], $row['cvv']);
                 return $users;
             }
 
@@ -136,7 +151,7 @@ class database
             $result->setFetchMode(PDO::FETCH_ASSOC);
 
             foreach ($result->fetchAll() as $row) {
-                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role'], $row['cnumber'], $row['emonth'], $row['eyear'], $row['cvv']);
                 return $users;
             }
 
@@ -157,8 +172,8 @@ class database
             $user = array();
 
             foreach ($result->fetchAll() as $row) {
-                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
-                array_push($user, $users);
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role'], $row['cnumber'], $row['emonth'], $row['eyear'], $row['cvv']);
+                return $users;
             }
 
             return $user;
@@ -180,8 +195,8 @@ class database
             $user = array();
 
             foreach ($result->fetchAll() as $row) {
-                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
-                array_push($user, $users);
+                $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role'], $row['cnumber'], $row['emonth'], $row['eyear'], $row['cvv']);
+                return $users;
             }
 
             return $user;
@@ -224,6 +239,29 @@ class database
     }
 
 
+    public function findTemplate(int $id)
+    {
+        try {
+            $query = "select * from pcautomate.templates where id = '{$id}'";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            foreach ($statement->fetchAll() as $row) {
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'],$row['price'], $row['comment']);
+                return $template;
+            }
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
+
+
+
+
+
     public function getTemplates(){
         try {
             $query = "select * from templates order by id desc";
@@ -239,6 +277,29 @@ class database
             }
 
             return $templates;
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+    }
+
+
+
+    public function showOrders(){
+        try {
+            $query = "select * from orders order by id desc";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+            $orders = array();
+
+            foreach ($statement->fetchAll() as $row) {
+                $order = new orders($row['id'], $row['user'], $row['orders'], $row['type']);
+                array_push($orders, $order);
+            }
+
+            return $orders;
 
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
@@ -377,7 +438,6 @@ class database
             $result = $this->connection->prepare($query);
             $result->execute();
 
-            return $result->fetchColumn();
             return $result->fetchColumn();
 
         } catch (PDOException $exception) {

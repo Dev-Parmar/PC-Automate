@@ -76,7 +76,7 @@ class products
         echo '<img src="images/products/'.$this->getImage().'" class="card-img-top m-3" style="width:450px;height:300px" alt="...">';
         echo '<p class="card-text mx-3">'.$this->getDescription().'</p>';
         echo '<h2 class="card-text mx-3"><b>Price: </b>$'.$this->getPrice().'</h2>';
-        echo '<td><button type="button" onclick="cart()" class="btn btn-success col-sm-4 mx-3">BUY</button></td>';
+        echo '<td><button type="button" onclick="location.href=\'cart.php?pid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3">BUY</button></td>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -85,5 +85,21 @@ class products
 
     }
 
+    public function buyProduct()
+    {
+        echo '<div class="card-deck my-3" style="text-align: center;">';
+        echo '<div class="card">';
+        echo '<div class="row">';
+        echo '<div class="card-body col-sm-5">';
+        echo '<h1 class="card-title mx-3">'.$this->getName().'</h1>';
+        echo '<img src="images/products/'.$this->getImage().'" class="card-img-top m-3" style="width:450px;height:300px" alt="...">';
+        echo '<p class="card-text mx-3">'.$this->getDescription().'</p>';
+        echo '<h2 class="card-text mx-3"><b>Price: </b>$'.$this->getPrice().'</h2>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '<br />';
+    }
 
 }

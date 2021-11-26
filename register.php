@@ -51,23 +51,73 @@ if (isset($_SESSION['alert'])){
 
     <h1 class="login-text my-5 mx-2">Create Account</h1>
 
-    <form action="Controller/reg-valid.php" method="POST" id="registerForm" onsubmit="return validate()">
+    <form action="Controller/reg-valid.php" method="POST" id="registerForm">
         <div class="form-group row m-2">
             <label for="name" class="col-sm-4 col-form-label">Name</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="name" id="name">
+                <input type="text" class="form-control" name="name" id="name" required>
             </div>
         </div>
         <div class="form-group row m-2">
             <label for="email" class="col-sm-4 col-form-label">Email</label>
             <div class="col-sm-8">
-                <input type="email" class="form-control" name="email" id="email">
+                <input type="email" class="form-control" name="email" id="email" required>
             </div>
         </div>
         <div class="form-group row m-2">
             <label for="password" class="col-sm-4 col-form-label">Password</label>
             <div class="col-sm-8">
-                <input type="password" class="form-control" name="password" id="password">
+                <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label for="cnumber" class="col-sm-4 col-form-label">Card Number</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="cnumber" id="cnumber" required>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label for="emonth" class="col-sm-4 col-form-label">Expiry Month</label>
+            <div class="col-sm-8">
+                <select class="form-select" id="emonth" name="emonth" required>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label for="eyear" class="col-sm-4 col-form-label">Expiry Year</label>
+            <div class="col-sm-8">
+                <select class="form-select" id="eyear" name="eyear" required>
+                    <option value="2021" selected>2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
+                    <option value="2032">2032</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label for="cvv" class="col-sm-4 col-form-label">CVV</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="cvv" id="cvv" required>
             </div>
         </div>
         <div class="form-group row m-2">
@@ -78,17 +128,6 @@ if (isset($_SESSION['alert'])){
 </div>
 
 <script>
-    function validate(){
-        let x = document.forms['registerForm']['email'].value;
-        let y = document.forms['registerForm']['password'].value;
-        let z = document.forms['registerForm']['name'].value;
-
-        if ((x == null || x == "") || (y == null || y == "") || (z == null || z == "")){
-            alert("Please enter all the details");
-            return false;
-        }
-    }
-
         function logout(){
         location.href = 'Controller/logout.php';
     }

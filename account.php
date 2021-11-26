@@ -97,6 +97,7 @@ if (isset($_SESSION['alert'])) {
             echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="addProduct()">Add a Product</button>';
             echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="editProduct()">Edit a product</button>';
             echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="makepc()">Create a template</button>';
+            echo '<button type="button" class="btn btn-info col-sm-5 mx-5 my-2" onclick="showOrders()">Show Orders</button>';
             echo '</div>';
 
             break;
@@ -154,6 +155,10 @@ if (isset($_SESSION['alert'])) {
 
     function  editProduct(){
         location.href = 'edit-product.php'
+    }
+
+    function showOrders(){
+        location.href = 'orders.php'
     }
 </script>
 </body>

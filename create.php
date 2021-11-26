@@ -365,7 +365,7 @@ require_once 'Model/products.php';
 
                 if (isset($_SESSION['id'])){
                     if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10']) ) {
-                        echo '<th scope="col"><button type="button" class="btn btn-success" onclick="cart()">BUY!</button></th>';
+                        echo '<th scope="col"><button type="button" class="btn btn-success" onclick="share()">BUY!</button></th>';
                     }
                     }else{
                 if (isset($_SESSION['c1']) && isset($_SESSION['c2']) && isset($_SESSION['c3']) && isset($_SESSION['c4']) && isset($_SESSION['c5']) && isset($_SESSION['c6']) && isset($_SESSION['c7']) && isset($_SESSION['c8']) && isset($_SESSION['c9']) && isset($_SESSION['c10'])) {
@@ -409,9 +409,7 @@ require_once 'Model/products.php';
     function share(){
         location.href = 'Controller/share-template.php';
     }
-    function cart(){
-        location.href = 'cart.php';
-    }
+
 
     function reset(){
         location.href = 'Controller/reset-create.php';
