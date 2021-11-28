@@ -66,7 +66,7 @@ class orders
 
                 $orderTemp = $database->findTemplate("$oid");
 
-                $order = 'Template '.$orderTemp->getID();
+                $order = 'PC build: '.$orderTemp->getID();
 
                 break;
 
