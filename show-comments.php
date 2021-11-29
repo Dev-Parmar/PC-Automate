@@ -109,6 +109,7 @@ if (isset($_SESSION['alert'])){
     <table class="table table-hover">
         <thead>
         <tr>
+            <th scope="col">Name</th>
             <th scope="col">Comments</th>
         </tr>
         </thead>
@@ -122,13 +123,30 @@ if (isset($_GET['tid'])){
 $database = new database();
 
 $show = $database->getComment($tid);
+$who = $database->getWhocom($tid);
 
 $comment = explode(";", $show);
+$whocom = explode(";", $who);
 
-$updated = array_reverse($comment);
-foreach ($updated as $com){
+$updatedC = array_reverse($comment);
+$updatedW = array_reverse($whocom);
+
+
+
+for ($i = 0; $i<count($updatedC); $i++){
+    $database1 = new database();
+
+    $user = trim($updatedW["$i"]);
+
+    $int = (int)$user;
+
+    $username= $database1->findID($int);
+
+    $name = $username->getName();
+
     echo '<tr>';
-    echo '<td>'.$com.'</td>';
+    echo '<td>'.$name.'</td>';
+    echo '<td>'.$updatedC["$i"].'</td>';
     echo '</tr>';
 
 }

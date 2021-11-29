@@ -99,10 +99,41 @@ class database
         }
     }
 
+    public function addWhocom($whocom, $tid)
+    {
+        try {
+            $query = "UPDATE pcautomate.templates SET whocom = '{$whocom}' WHERE id='{$tid}'";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
+
+
     public function getComment($tid)
     {
         try {
             $query = "SELECT comment FROM templates where id = {$tid}";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+
+            return $result->fetchColumn();
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
+
+
+    public function getWhocom($tid)
+    {
+        try {
+            $query = "SELECT whocom FROM templates where id = {$tid}";
             $result = $this->connection->prepare($query);
             $result->execute();
 
