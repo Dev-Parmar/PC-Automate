@@ -8,10 +8,20 @@ if (isset($_POST['submit'])) {
     $tid = $_GET['tid'];
     $comment = $_POST['comment'];
 
+
     $database = new database();
 
-    $addComment = $database->addComment($comment, $tid);
 
-    header("Location: ../templates.php");
+    $empty = array();
+
+    $show = $database->getComment($tid);
+
+    array_push($empty, "$show", "$comment");
+
+    $newComment = implode(";", $empty);
+
+   $addComment = $database->addComment($newComment, $tid);
+
+   header("Location: ../templates.php");
 
 }

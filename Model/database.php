@@ -99,6 +99,21 @@ class database
         }
     }
 
+    public function getComment($tid)
+    {
+        try {
+            $query = "SELECT comment FROM templates where id = {$tid}";
+            $result = $this->connection->prepare($query);
+            $result->execute();
+
+            return $result->fetchColumn();
+
+        } catch (PDOException $exception) {
+            echo "ERROR : {$exception->getMessage()}";
+        }
+
+    }
+
 
 
     public function searchProducts($category)
@@ -360,7 +375,7 @@ class database
     public function filterProducts($price, $category)
     {
         try {
-            $query = "select * from pcautomate.products where price>='{$price}' and category='{$category}'";
+            $query = "select * from pcautomate.products where price<='{$price}' and category='{$category}'";
             $statement = $this->connection->prepare($query);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -385,7 +400,7 @@ class database
     public function filterPrice($price)
     {
         try {
-            $query = "select * from pcautomate.products where price>='{$price}'";
+            $query = "select * from pcautomate.products where price<='{$price}'";
             $statement = $this->connection->prepare($query);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -411,7 +426,7 @@ class database
 
     public function filterTemplates($price){
         try {
-            $query = "select * from pcautomate.templates where price>='{$price}'";
+            $query = "select * from pcautomate.templates where price<='{$price}'";
             $statement = $this->connection->prepare($query);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_ASSOC);

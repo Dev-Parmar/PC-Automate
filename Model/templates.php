@@ -5,6 +5,8 @@ require_once "users.php";
 require_once "products.php";
 require_once "templates.php";
 
+
+
 class templates
 {
     private $id;
@@ -130,9 +132,10 @@ class templates
         echo '<li class="card-list"><b>Operating System: </b>'.$os.'</li></ul>';
         echo '<h2 class="card-text mx-3">Price: $'. trim($this->getPrice()) .'</h2>';
         echo '<td><button type="button" onclick="location.href=\'cart.php?tid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">BUY</button></td>';
+        echo '<td><button type="button" onclick="location.href=\'show-comments.php?tid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">Show All Comments</button></td>';
         if ($sid == 1){
             echo '<form class="d-flex p-3" method="post" action="Controller/add-comment.php?tid='.$this->getID().'">';
-            echo '<input class="form-control" name="comment" type="text" placeholder="'.trim($this->getComment()).'" aria-label="Comment">';
+            echo '<input class="form-control" name="comment" type="text" placeholder="Add a comment!" aria-label="Comment">';
             echo '<button class="btn btn-outline-success" type="submit" name="submit" >Comment</button>';
             echo '</form>';
 

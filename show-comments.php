@@ -7,10 +7,18 @@ unset($_SESSION['cat']);
 unset($_SESSION['temPr']);
 
 require_once 'Model/database.php';
+require_once 'Model/products.php';
+require_once 'Model/templates.php';
 require_once 'Model/users.php';
-require_once 'Model/orders.php';
+
+
+if (isset($_SESSION['alert'])){
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +29,36 @@ require_once 'Model/orders.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <title>My Account</title>
+    <title>Cart</title>
 
     <link rel="stylesheet" href="css/main.css">
+
+    <style>
+
+        body{
+            background-color: #fcf6c5;
+
+        }
+
+        .left{
+            float:left;
+            position: fixed;
+            width: 20%;
+            height: 50vh;
+            background-color: #00377a;
+            color: #fcf6c5;
+        }
+
+        .right{
+            float:right;
+            width:70%;
+            min-height: 100vh;
+            overflow: hidden;
+
+        }
+
+
+    </style>
 
 </head>
 
@@ -37,6 +72,9 @@ require_once 'Model/orders.php';
             <?php
             if (isset($_SESSION['id'])){
                 echo '<button class="btn btn-danger col-2 m-2" type="button" onclick="logout()">Logout</button>';
+            }else{
+                echo '<button class="btn btn-success col-2 m-2 ms-auto" type="button"  onclick="login()">Login</button>';
+                echo '<button class="btn btn-warning col-2 m-2" type="button" onclick="register()">Register</button>';
             }
             ?>
         </div>
@@ -66,40 +104,50 @@ require_once 'Model/orders.php';
         </div>
     </div>
 </nav>
+
 <div class="container">
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">USER</th>
-            <th scope="col">ORDER</th>
+            <th scope="col">Comments</th>
         </tr>
         </thead>
         <tbody>
-    <?php
-
-    $database = new database();
-
-    $orders = $database->showOrders();
-
-    if ($orders) {
-        foreach ($orders as $or) {
-            $or->showOrders();
-        }
-    }else{
-        echo '<h2 class="m-3">No Templates Found!</h2>';
-    }
+<?php
 
 
+if (isset($_GET['tid'])){
+
+    $tid = $_GET['tid'];
+$database = new database();
+
+$show = $database->getComment($tid);
+
+$comment = explode(";", $show);
+
+$updated = array_reverse($comment);
+foreach ($updated as $com){
+    echo '<tr>';
+    echo '<td>'.$com.'</td>';
+    echo '</tr>';
+
+}
+
+
+}
 
 
 
-    ?>
+?>
         </tbody>
     </table>
-
-
 </div>
+
+
+
+
+
+
 
 <script>
     function logout(){
@@ -114,6 +162,7 @@ require_once 'Model/orders.php';
         location.href = 'register.php';
     }
 </script>
+
 
 </body>
 </html>
