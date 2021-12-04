@@ -17,7 +17,7 @@ switch ($category){
 
     case 'headphone':
 
-        $_SESSION['pr'] = 0;
+        $_SESSION['pr'] = 1000;
 
         $_SESSION['cat'] = 'headphone';
 
@@ -28,7 +28,7 @@ switch ($category){
 
     case 'keyboard':
 
-        $_SESSION['pr'] = 0;
+        $_SESSION['pr'] = 1000;
 
         $_SESSION['cat'] = 'keyboard';
 
@@ -38,7 +38,7 @@ switch ($category){
 
     case 'mouse':
 
-        $_SESSION['pr'] = 0;
+        $_SESSION['pr'] = 1000;
 
         $_SESSION['cat'] = 'mouse';
 
@@ -50,7 +50,7 @@ switch ($category){
     case 'speaker':
 
 
-        $_SESSION['pr'] = 0;
+        $_SESSION['pr'] = 1000;
 
         $_SESSION['cat'] = 'speaker';
 
