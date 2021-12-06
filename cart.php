@@ -157,7 +157,7 @@ if (isset($_SESSION['alert'])){
                     </select>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row">
                 <label for="cvv" class="col-sm-6 form-label">CVV</label><br />
                 <div class="col-sm-6">
                 <input type="number" class="col-sm-6 form-number" id="cvv" name="cvv" required>
