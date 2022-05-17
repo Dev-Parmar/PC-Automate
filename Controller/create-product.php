@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         $imageName = "{$updateID}product.png";
 
         $allowedImg = array(IMAGETYPE_PNG);
-        $stringImg = implode( " ", $image['tmp_name']);
+        $stringImg = implode(" ", $image['tmp_name']);
         $givenImg = exif_imagetype($stringImg);
         $foundInAllowedTypes = in_array($givenImg, $allowedImg);
 
@@ -29,19 +29,19 @@ if (isset($_POST['submit'])) {
             move_uploaded_file($stringImg, './../images/products/' . $updateID . 'product.png');
             $database = new database();
 
-            $newProducts = new products (null, "$name", "$imageName", "$description","$category", "$price");
+            $newProducts = new products(null, "$name", "$imageName", "$description", "$category", "$price");
 
-            $database->insertProducts($newProducts);//to add a new product
+            $database->insertProducts($newProducts); //to add a new product
 
 
             $_SESSION['alert'] = "<script>alert('Product Added Successfully!')</script>";
-            header("Location: ../account.php");
+            header("Location: ../View/account.php");
         } else {
             $_SESSION['alert'] = "<script>alert('Image Type Not Allowed!')</script>";
-            header("Location: ../add-product.php");
+            header("Location: ../View/add-product.php");
         }
     } else {
         $_SESSION['alert'] = "<script>alert('Please select a file to upload')</script>";
-        header("Location: ../add-product.php");
+        header("Location: ../View/add-product.php");
     }
 }

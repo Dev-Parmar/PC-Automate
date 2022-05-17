@@ -13,5 +13,4 @@ unset($_SESSION['c8']);
 unset($_SESSION['c9']);
 unset($_SESSION['c10']);
 
-header("Location: ../create.php");
-
+header("Location: ../View/create.php");

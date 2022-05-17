@@ -18,15 +18,9 @@ if (isset($_POST['submit'])) {
     $updateProduct = $database->updateProducts("$pid", "$name", "$description","$category" ,"$price");
 
     $_SESSION['alert'] = "<script>alert('Product Updated Successfully!')</script>";
-    header("Location: ../account.php");
+    header("Location: ../View/account.php");
 }else{
     $_SESSION['alert'] = "<script>alert('Something went wrong!')</script>";
-    header("Location: ../account.php");
+    header("Location: ../View/account.php");
 
 }
-
-
-
-
-?>
-

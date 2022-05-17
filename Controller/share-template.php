@@ -18,7 +18,7 @@ $monitor = $_SESSION['c9'];
 $os = $_SESSION['c10'];
 $price = $_COOKIE['price'];
 
-$newTemplate = new templates(null, "$processor", "$motherboard", "$cooler", "$cpucase", "$gpu", "$ram", "$storage", "$power","$monitor","$os" ,"$price","Add a comment!");
+$newTemplate = new templates(null, "$processor", "$motherboard", "$cooler", "$cpucase", "$gpu", "$ram", "$storage", "$power", "$monitor", "$os", "$price", "Add a comment!");
 
 $database->insertTemplates($newTemplate);
 
@@ -26,9 +26,8 @@ unset($_COOKIE['price']);
 
 if ($database) {
     $_SESSION['alert'] = "<script>alert('Template shared Successfully!')</script>";
-    header("Location: ../templates.php");
-
-}else{
+    header("Location: ../View/etemplates.php");
+} else {
     $_SESSION['alert'] = "<script>alert('Some error occurred!')</script>";
-    header("Location: ../templates.php");
+    header("Location: ../View/etemplates.php");
 }

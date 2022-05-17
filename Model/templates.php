@@ -23,7 +23,7 @@ class templates
     private $price;
     private $comment;
 
-    public function __construct($id, $processor, $motherboard, $cooler, $cpucase, $gpu, $ram, $storage, $power, $monitor,$os,$price, $comment)
+    public function __construct($id, $processor, $motherboard, $cooler, $cpucase, $gpu, $ram, $storage, $power, $monitor, $os, $price, $comment)
     {
         $this->id = $id;
         $this->processor = $processor;
@@ -83,7 +83,7 @@ class templates
     }
     public function getOS()
     {
-        return$this->os;
+        return $this->os;
     }
     public function getPrice()
     {
@@ -118,35 +118,32 @@ class templates
         echo '<div class="card">';
         echo '<div class="row">';
         echo '<div class="card-body col-sm-5">';
-        echo '<h1 class="card-title mx-3" style="text-align: center;">PC Build: '.$this->getID().'</h1>';
+        echo '<h1 class="card-title mx-3" style="text-align: center;">PC Build: ' . $this->getID() . '</h1>';
         echo '<ul class="card-list">';
-        echo '<li class="card-list"><b>Processor: </b>'.$processor .'</li>';
-        echo '<li class="card-list"><b>Motherboard: </b>'.$motherboard.'</li>';
-        echo '<li class="card-list"><b>CPU Cooler: </b>'.$cooler.'</li>';
-        echo '<li class="card-list"><b>CPU Case: </b>'.$case.'</li>';
-        echo '<li class="card-list"><b>GPU: </b>'.$gpu.'</li>';
-        echo '<li class="card-list"><b>RAM: </b>'.$ram.'</li>';
-        echo '<li class="card-list"><b>Storage: </b>'.$storage.'</li>';
-        echo '<li class="card-list"><b>Power Supply: </b>'.$power.'</li>';
-        echo '<li class="card-list"><b>Monitor: </b>'.$monitor.'</li>';
-        echo '<li class="card-list"><b>Operating System: </b>'.$os.'</li></ul>';
-        echo '<h2 class="card-text mx-3">Price: $'. trim($this->getPrice()) .'</h2>';
-        echo '<td><button type="button" onclick="location.href=\'cart.php?tid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">BUY</button></td>';
-        echo '<td><button type="button" onclick="location.href=\'show-comments.php?tid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">Show All Comments</button></td>';
-        if ($sid == 1){
-            echo '<form class="d-flex p-3" method="post" action="Controller/add-comment.php?tid='.$this->getID().'">';
+        echo '<li class="card-list"><b>Processor: </b>' . $processor . '</li>';
+        echo '<li class="card-list"><b>Motherboard: </b>' . $motherboard . '</li>';
+        echo '<li class="card-list"><b>CPU Cooler: </b>' . $cooler . '</li>';
+        echo '<li class="card-list"><b>CPU Case: </b>' . $case . '</li>';
+        echo '<li class="card-list"><b>GPU: </b>' . $gpu . '</li>';
+        echo '<li class="card-list"><b>RAM: </b>' . $ram . '</li>';
+        echo '<li class="card-list"><b>Storage: </b>' . $storage . '</li>';
+        echo '<li class="card-list"><b>Power Supply: </b>' . $power . '</li>';
+        echo '<li class="card-list"><b>Monitor: </b>' . $monitor . '</li>';
+        echo '<li class="card-list"><b>Operating System: </b>' . $os . '</li></ul>';
+        echo '<h2 class="card-text mx-3">Price: $' . trim($this->getPrice()) . '</h2>';
+        echo '<td><button type="button" onclick="location.href=\'cart.php?tid=' . $this->getID() . '\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">BUY</button></td>';
+        echo '<td><button type="button" onclick="location.href=\'show-comments.php?tid=' . $this->getID() . '\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">Show All Comments</button></td>';
+        if ($sid == 1) {
+            echo '<form class="d-flex p-3" method="post" action="../Controller/add-comment.php?tid=' . $this->getID() . '">';
             echo '<input class="form-control" name="comment" type="text" placeholder="Add a comment!" aria-label="Comment">';
             echo '<button class="btn btn-outline-success" type="submit" name="submit" >Comment</button>';
             echo '</form>';
-
         }
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '<br />';
-
-
     }
 
 
@@ -171,20 +168,20 @@ class templates
         echo '<div class="col-sm-6 col-md-4">';
         echo '<div class="card p-2" style="width: 20rem;">';
         echo '<div class="card-body">';
-        echo '<h1 class="card-title mx-3" >PC Build: '.$this->getID().'</h1>';
+        echo '<h1 class="card-title mx-3" >PC Build: ' . $this->getID() . '</h1>';
         echo '<ul class="card-list">';
-        echo '<li class="card-list"><b>Processor: </b>'.$processor .'</li>';
-        echo '<li class="card-list"><b>Motherboard: </b>'.$motherboard.'</li>';
-        echo '<li class="card-list"><b>CPU Cooler: </b>'.$cooler.'</li>';
-        echo '<li class="card-list"><b>CPU Case: </b>'.$case.'</li>';
-        echo '<li class="card-list"><b>GPU: </b>'.$gpu.'</li>';
-        echo '<li class="card-list"><b>RAM: </b>'.$ram.'</li>';
-        echo '<li class="card-list"><b>Storage: </b>'.$storage.'</li>';
-        echo '<li class="card-list"><b>Power Supply: </b>'.$power.'</li>';
-        echo '<li class="card-list"><b>Monitor: </b>'.$monitor.'</li>';
-        echo '<li class="card-list"><b>Operating System: </b>'.$os.'</li></ul>';
-        echo '<h2 class="card-text mx-3">Price: $'. trim($this->getPrice()) .'</h2>';
-        echo '<td><button type="button" onclick="location.href=\'cart.php?tid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">BUY</button></td>';
+        echo '<li class="card-list"><b>Processor: </b>' . $processor . '</li>';
+        echo '<li class="card-list"><b>Motherboard: </b>' . $motherboard . '</li>';
+        echo '<li class="card-list"><b>CPU Cooler: </b>' . $cooler . '</li>';
+        echo '<li class="card-list"><b>CPU Case: </b>' . $case . '</li>';
+        echo '<li class="card-list"><b>GPU: </b>' . $gpu . '</li>';
+        echo '<li class="card-list"><b>RAM: </b>' . $ram . '</li>';
+        echo '<li class="card-list"><b>Storage: </b>' . $storage . '</li>';
+        echo '<li class="card-list"><b>Power Supply: </b>' . $power . '</li>';
+        echo '<li class="card-list"><b>Monitor: </b>' . $monitor . '</li>';
+        echo '<li class="card-list"><b>Operating System: </b>' . $os . '</li></ul>';
+        echo '<h2 class="card-text mx-3">Price: $' . trim($this->getPrice()) . '</h2>';
+        echo '<td><button type="button" onclick="location.href=\'cart.php?tid=' . $this->getID() . '\'" class="btn btn-success col-sm-4 mx-3" style="text-align: center;">BUY</button></td>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -212,31 +209,23 @@ class templates
         echo '<div class="card">';
         echo '<div class="row">';
         echo '<div class="card-body col-sm-5">';
-        echo '<h1 class="card-title mx-3" style="text-align: center;">PC Build: '.$this->getID().'</h1>';
+        echo '<h1 class="card-title mx-3" style="text-align: center;">PC Build: ' . $this->getID() . '</h1>';
         echo '<ul class="card-list">';
-        echo '<li class="card-list"><b>Processor: </b>'.$processor .'</li>';
-        echo '<li class="card-list"><b>Motherboard: </b>'.$motherboard.'</li>';
-        echo '<li class="card-list"><b>CPU Cooler: </b>'.$cooler.'</li>';
-        echo '<li class="card-list"><b>CPU Case: </b>'.$case.'</li>';
-        echo '<li class="card-list"><b>GPU: </b>'.$gpu.'</li>';
-        echo '<li class="card-list"><b>RAM: </b>'.$ram.'</li>';
-        echo '<li class="card-list"><b>Storage: </b>'.$storage.'</li>';
-        echo '<li class="card-list"><b>Power Supply: </b>'.$power.'</li>';
-        echo '<li class="card-list"><b>Monitor: </b>'.$monitor.'</li>';
-        echo '<li class="card-list"><b>Operating System: </b>'.$os.'</li></ul>';
-        echo '<h2 class="card-text mx-3">Price: $'. trim($this->getPrice()) .'</h2>';
+        echo '<li class="card-list"><b>Processor: </b>' . $processor . '</li>';
+        echo '<li class="card-list"><b>Motherboard: </b>' . $motherboard . '</li>';
+        echo '<li class="card-list"><b>CPU Cooler: </b>' . $cooler . '</li>';
+        echo '<li class="card-list"><b>CPU Case: </b>' . $case . '</li>';
+        echo '<li class="card-list"><b>GPU: </b>' . $gpu . '</li>';
+        echo '<li class="card-list"><b>RAM: </b>' . $ram . '</li>';
+        echo '<li class="card-list"><b>Storage: </b>' . $storage . '</li>';
+        echo '<li class="card-list"><b>Power Supply: </b>' . $power . '</li>';
+        echo '<li class="card-list"><b>Monitor: </b>' . $monitor . '</li>';
+        echo '<li class="card-list"><b>Operating System: </b>' . $os . '</li></ul>';
+        echo '<h2 class="card-text mx-3">Price: $' . trim($this->getPrice()) . '</h2>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '<br />';
-
-
     }
-
-
-
-
-
 }
-

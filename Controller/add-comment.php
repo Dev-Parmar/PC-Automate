@@ -26,8 +26,7 @@ if (isset($_POST['submit'])) {
 
 
     $addWho = $database->addWhocom($newWhocom, $tid);
-   $addComment = $database->addComment($newComment, $tid);
+    $addComment = $database->addComment($newComment, $tid);
 
-   header("Location: ../templates.php");
-
+    header("Location: ../View/etemplates.php");
 }

@@ -9,13 +9,11 @@ require_once "../Model/products.php";
 require_once "../Model/templates.php";
 
 
-if (isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     $_SESSION['temPr'] = $_POST['price'];
 
-    header("Location: ../templates.php?filter=filtered");
-
-}else{
-    header("Location: ../templates.php?filter=noFilter");
+    header("Location: ../View/etemplates.php?filter=filtered");
+} else {
+    header("Location: ../View/etemplates.php?filter=noFilter");
 }
-?>

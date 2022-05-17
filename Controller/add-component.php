@@ -21,7 +21,7 @@ switch ($category){
 
         $_SESSION['c1'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -30,7 +30,7 @@ switch ($category){
 
         $_SESSION['c2'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -40,7 +40,7 @@ switch ($category){
 
         $_SESSION['c3'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -50,7 +50,7 @@ switch ($category){
 
         $_SESSION['c4'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -61,7 +61,7 @@ switch ($category){
 
         $_SESSION['c5'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
 
         break;
@@ -71,7 +71,7 @@ switch ($category){
 
         $_SESSION['c6'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -83,7 +83,7 @@ switch ($category){
 
         $_SESSION['c7'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -91,7 +91,7 @@ switch ($category){
 
         $_SESSION['c8'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -100,7 +100,7 @@ switch ($category){
 
         $_SESSION['c9'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -108,25 +108,9 @@ switch ($category){
 
         $_SESSION['c10'] = $pid;
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

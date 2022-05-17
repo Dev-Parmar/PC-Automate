@@ -14,7 +14,7 @@ switch ($pid){
 
         unset($_SESSION['c1']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -23,7 +23,7 @@ switch ($pid){
 
         unset($_SESSION['c2']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -33,7 +33,7 @@ switch ($pid){
 
         unset($_SESSION['c3']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -43,7 +43,7 @@ switch ($pid){
 
         unset($_SESSION['c4']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -54,7 +54,7 @@ switch ($pid){
 
         unset($_SESSION['c5']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
 
         break;
@@ -64,7 +64,7 @@ switch ($pid){
 
         unset($_SESSION['c6']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -74,7 +74,7 @@ switch ($pid){
 
         unset($_SESSION['c7']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -83,7 +83,7 @@ switch ($pid){
 
         unset($_SESSION['c8']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -92,7 +92,7 @@ switch ($pid){
 
         unset($_SESSION['c9']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
@@ -100,13 +100,10 @@ switch ($pid){
 
         unset($_SESSION['c10']);
 
-        header("Location: ../create.php");
+        header("Location: ../View/create.php");
 
         break;
 
 
 
 }
-
-
-?>

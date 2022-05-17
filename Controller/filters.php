@@ -20,20 +20,19 @@ if (isset($_POST['submit'])){
 
         if (isset($_POST['price']) && ($_POST['category'] != 'select')){
 
-            header("Location: ../shop.php?filter=withCat");
+            header("Location: ../View/shop.php?filter=withCat");
 
         }else{
 
-            header("Location: ../shop.php?filter=onPr");
+            header("Location: ../View/shop.php?filter=onPr");
 
         }
 
     }else {
-        header("Location: ../shop.php?filter=noCat");
+        header("Location: ../View/shop.php?filter=noCat");
 
     }
 
 }else{
-    header("Location: ../shop.php");
+    header("Location: ../View/shop.php");
 }
-?>

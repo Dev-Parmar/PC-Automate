@@ -7,10 +7,10 @@ require_once "templates.php";
 class database
 {
 
-    private const serverName = "localhost";
+    private const serverName = "192.168.0.192";
     private const database = "pcautomate";
     private const username = "root";
-    private const password = "";
+    private const password = "root";
     private const connectionString = "mysql:host=" . Database::serverName . ";dbname=" . Database::database;
 
     private PDO $connection;
@@ -59,7 +59,6 @@ class database
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
     public function insertOrders(orders $orders)
@@ -71,12 +70,11 @@ class database
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
 
 
-    public function updateProducts($id, $name, $description, $category ,$price)         //to update products
+    public function updateProducts($id, $name, $description, $category, $price)         //to update products
     {
         try {
             $query = "UPDATE pcautomate.products SET name = '{$name}', description='{$description}', category='{$category}', price = '{$price}' WHERE id='{$id}'";
@@ -85,7 +83,6 @@ class database
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
     public function addComment($comment, $tid)
@@ -108,7 +105,6 @@ class database
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
 
@@ -121,11 +117,9 @@ class database
             $result->execute();
 
             return $result->fetchColumn();
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
 
@@ -138,11 +132,9 @@ class database
             $result->execute();
 
             return $result->fetchColumn();
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
 
@@ -162,11 +154,9 @@ class database
                 array_push($products, $product);
             }
             return $products;
-
-        }catch (PDOException $exception) {
+        } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
 
@@ -182,7 +172,6 @@ class database
                 $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role'], $row['cnumber'], $row['emonth'], $row['eyear'], $row['cvv']);
                 return $users;
             }
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -200,11 +189,9 @@ class database
                 $users = new users($row['id'], $row['name'], $row['email'], $row['password'], $row['role'], $row['cnumber'], $row['emonth'], $row['eyear'], $row['cvv']);
                 return $users;
             }
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
     public function checkName(string $name)        //take in username and return the details of the users
@@ -223,11 +210,9 @@ class database
             }
 
             return $user;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
     }
 
     public function checkEmail(string $email)        //take in username and return the details of the users
@@ -246,7 +231,6 @@ class database
             }
 
             return $user;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -260,7 +244,6 @@ class database
             $result->execute();
 
             return $result->fetchColumn();
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -275,10 +258,9 @@ class database
             $statement->setFetchMode(PDO::FETCH_ASSOC);
 
             foreach ($statement->fetchAll() as $row) {
-                $products = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['category'],$row['price']);
+                $products = new products($row['id'], $row['name'], $row['image'], $row['description'], $row['category'], $row['price']);
                 return $products;
             }
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -294,10 +276,9 @@ class database
             $statement->setFetchMode(PDO::FETCH_ASSOC);
 
             foreach ($statement->fetchAll() as $row) {
-                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'],$row['price'], $row['comment']);
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'], $row['price'], $row['comment']);
                 return $template;
             }
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -308,7 +289,8 @@ class database
 
 
 
-    public function getTemplates(){
+    public function getTemplates()
+    {
         try {
             $query = "select * from templates order by id desc";
             $statement = $this->connection->prepare($query);
@@ -318,12 +300,11 @@ class database
             $templates = array();
 
             foreach ($statement->fetchAll() as $row) {
-                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'],$row['price'], $row['comment']);
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'], $row['price'], $row['comment']);
                 array_push($templates, $template);
             }
 
             return $templates;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -331,7 +312,8 @@ class database
 
 
 
-    public function showOrders(){
+    public function showOrders()
+    {
         try {
             $query = "select * from orders order by id desc";
             $statement = $this->connection->prepare($query);
@@ -346,7 +328,6 @@ class database
             }
 
             return $orders;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -355,7 +336,8 @@ class database
 
 
 
-    public function get3Templates(){
+    public function get3Templates()
+    {
         try {
             $query = "select * from templates order by id desc limit 3";
             $statement = $this->connection->prepare($query);
@@ -365,12 +347,11 @@ class database
             $templates = array();
 
             foreach ($statement->fetchAll() as $row) {
-                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'],$row['price'], $row['comment']);
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'], $row['price'], $row['comment']);
                 array_push($templates, $template);
             }
 
             return $templates;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -381,7 +362,8 @@ class database
 
 
 
-    public function getShop(){
+    public function getShop()
+    {
         try {
             $query = "select * from pcautomate.products";
             $statement = $this->connection->prepare($query);
@@ -396,7 +378,6 @@ class database
             }
 
             return $products;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -419,12 +400,9 @@ class database
             }
 
             return $products;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
-
     }
 
 
@@ -444,18 +422,16 @@ class database
             }
 
             return $products;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
-
-
     }
 
 
 
 
-    public function filterTemplates($price){
+    public function filterTemplates($price)
+    {
         try {
             $query = "select * from pcautomate.templates where price<='{$price}'";
             $statement = $this->connection->prepare($query);
@@ -465,12 +441,11 @@ class database
             $templates = array();
 
             foreach ($statement->fetchAll() as $row) {
-                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'],$row['os'] ,$row['price'], $row['comment']);
+                $template = new templates($row['id'], $row['processor'], $row['motherboard'], $row['cooler'], $row['cpucase'], $row['gpu'], $row['ram'], $row['storage'], $row['power'], $row['monitor'], $row['os'], $row['price'], $row['comment']);
                 array_push($templates, $template);
             }
 
             return $templates;
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
@@ -485,15 +460,8 @@ class database
             $result->execute();
 
             return $result->fetchColumn();
-
         } catch (PDOException $exception) {
             echo "ERROR : {$exception->getMessage()}";
         }
     }
-
-
-
 }
-
-
-?>

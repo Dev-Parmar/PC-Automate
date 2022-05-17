@@ -23,32 +23,22 @@ if (isset($_POST['submit'])) {
     if (empty($checkName)) {
         $checkEmail = $database->checkEmail("$email");
         if (empty($checkEmail)) {
-            $newUser = new users (null, "$name", "$email", "$password", "$role", "$cnumber" , "$emonth", "$eyear", "$cvv");
+            $newUser = new users(null, "$name", "$email", "$password", "$role", "$cnumber", "$emonth", "$eyear", "$cvv");
             $database->insertUser($newUser);
 
             if ($database) {
                 $_SESSION['alert'] = "<script>alert('Registration Successful! Please Login to continue!')</script>";
-                header("Location: ../login.php");
+                header("Location: ../View/login.php");
             } else {
                 $_SESSION['alert'] = "<script>alert('Whoops! Something Went Wrong!')</script>";
-                header("Location: ../register.php");
+                header("Location: ../View/register.php");
             }
         } else {
             $_SESSION['alert'] = "<script>alert('Whoops! Email Already Exists.')</script>";
-            header("Location: ../register.php");
+            header("Location: ../View/register.php");
         }
-    }else{
+    } else {
         $_SESSION['alert'] = "<script>alert('Username already taken!')</script>";
-        header("Location: ../register.php");
-}
-
-
-
-
-
-
-
-
-
-
+        header("Location: ../View/register.php");
+    }
 }

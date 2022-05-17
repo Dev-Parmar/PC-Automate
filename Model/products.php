@@ -10,7 +10,7 @@ class products
     private $category;
     private $price;
 
-    public function __construct($id, $name, $image, $description, $category,$price)
+    public function __construct($id, $name, $image, $description, $category, $price)
     {
         $this->id = $id;
         $this->name = $name;
@@ -47,23 +47,23 @@ class products
     }
 
 
-    public function printProducts(){
+    public function printProducts()
+    {
         echo '<tr>';
-        echo '<td>'.$this->getName().'</td>';
-        echo '<td colspan="3">'.$this->getDescription().'</td>';
-        echo '<td id="propr"><b>'.$this->getPrice().'</b></td>';
-        echo '<td><button type="button" class="btn btn-secondary" onclick="selectProduct('.$this->getID().')">ADD</button></td>';
+        echo '<td>' . $this->getName() . '</td>';
+        echo '<td colspan="3">' . $this->getDescription() . '</td>';
+        echo '<td id="propr"><b>' . $this->getPrice() . '</b></td>';
+        echo '<td><button type="button" class="btn btn-secondary" onclick="selectProduct(' . $this->getID() . ')">ADD</button></td>';
         echo '</tr>';
-
     }
 
 
-    public function addProducts(){
-        echo '<td>'.$this->getName().'</td>';
-        echo '<td colspan="3">'.$this->getDescription().'</td>';
-        echo '<td id="propr"><b>'.$this->getPrice().'</b></td>';
+    public function addProducts()
+    {
+        echo '<td>' . $this->getName() . '</td>';
+        echo '<td colspan="3">' . $this->getDescription() . '</td>';
+        echo '<td id="propr"><b>' . $this->getPrice() . '</b></td>';
         echo '<td><button type="button" class="btn-close" aria-label="Close"></button></td>';
-
     }
 
     public function products()
@@ -72,17 +72,16 @@ class products
         echo '<div class="card">';
         echo '<div class="row">';
         echo '<div class="card-body col-sm-5">';
-        echo '<h1 class="card-title mx-3">'.$this->getName().'</h1>';
-        echo '<img src="images/products/'.$this->getImage().'" class="card-img-top m-3" style="width:450px;height:300px" alt="...">';
-        echo '<p class="card-text mx-3">'.$this->getDescription().'</p>';
-        echo '<h2 class="card-text mx-3"><b>Price: </b>$'.$this->getPrice().'</h2>';
-        echo '<td><button type="button" onclick="location.href=\'cart.php?pid='. $this->getID().'\'" class="btn btn-success col-sm-4 mx-3">BUY</button></td>';
+        echo '<h1 class="card-title mx-3">' . $this->getName() . '</h1>';
+        echo '<img src="../images/products/' . $this->getImage() . '" class="card-img-top m-3" style="width:450px;height:300px" alt="...">';
+        echo '<p class="card-text mx-3">' . $this->getDescription() . '</p>';
+        echo '<h2 class="card-text mx-3"><b>Price: </b>$' . $this->getPrice() . '</h2>';
+        echo '<td><button type="button" onclick="location.href=\'cart.php?pid=' . $this->getID() . '\'" class="btn btn-success col-sm-4 mx-3">BUY</button></td>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '<br />';
-
     }
 
     public function buyProduct()
@@ -91,15 +90,14 @@ class products
         echo '<div class="card">';
         echo '<div class="row">';
         echo '<div class="card-body col-sm-5">';
-        echo '<h1 class="card-title mx-3">'.$this->getName().'</h1>';
-        echo '<img src="images/products/'.$this->getImage().'" class="card-img-top m-3" style="width:450px;height:300px" alt="...">';
-        echo '<p class="card-text mx-3">'.$this->getDescription().'</p>';
-        echo '<h2 class="card-text mx-3"><b>Price: </b>$'.$this->getPrice().'</h2>';
+        echo '<h1 class="card-title mx-3">' . $this->getName() . '</h1>';
+        echo '<img src="../images/products/' . $this->getImage() . '" class="card-img-top m-3" style="width:450px;height:300px" alt="...">';
+        echo '<p class="card-text mx-3">' . $this->getDescription() . '</p>';
+        echo '<h2 class="card-text mx-3"><b>Price: </b>$' . $this->getPrice() . '</h2>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '<br />';
     }
-
 }

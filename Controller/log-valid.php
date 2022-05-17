@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 
     $database = new database();
 
-    $result = $database->login($email,$password);                    //to check the username and password is right
+    $result = $database->login($email, $password);                    //to check the username and password is right
 
     if (!empty($result)) {
 
@@ -29,7 +29,6 @@ if (isset($_POST['submit'])) {
         header("Location: ../index.php");
     } else {
         $_SESSION['alert'] = "<script>alert('Whoops! Username or Password is Incorrect!')</script>";
-        header("Location: ../login.php");
-
-}}
-
+        header("Location: ../View/login.php");
+    }
+}

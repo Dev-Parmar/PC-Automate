@@ -13,7 +13,7 @@ $category = $_GET['cat'];
 
 echo $category;
 
-switch ($category){
+switch ($category) {
 
     case 'headphone':
 
@@ -22,7 +22,7 @@ switch ($category){
         $_SESSION['cat'] = 'headphone';
 
 
-        header("Location: ../shop.php?filter=withCat");
+        header("Location: ../View/shop.php?filter=withCat");
 
         break;
 
@@ -32,7 +32,7 @@ switch ($category){
 
         $_SESSION['cat'] = 'keyboard';
 
-        header("Location: ../shop.php?filter=withCat");
+        header("Location: ../View/shop.php?filter=withCat");
 
         break;
 
@@ -42,7 +42,7 @@ switch ($category){
 
         $_SESSION['cat'] = 'mouse';
 
-        header("Location: ../shop.php?filter=withCat");
+        header("Location: ../View/shop.php?filter=withCat");
 
         break;
 
@@ -54,7 +54,7 @@ switch ($category){
 
         $_SESSION['cat'] = 'speaker';
 
-        header("Location: ../shop.php?filter=withCat");
+        header("Location: ../View/shop.php?filter=withCat");
 
         break;
 }
